@@ -10,6 +10,6 @@ defaultEntryPoints = ["http"]
 address = ":8080"
 
 [file]
-filename = "/opt/traefik/rules.toml"
+filename = "/opt/traefik/etc/rules.toml"
 watch = true
 
