@@ -5,7 +5,7 @@ accessLogsFile = "/opt/traefik/log/access.log"
 defaultEntryPoints = ["http"]
 [entryPoints]
   [entryPoints.http]
-  address = ":80"
+  address = ":8000"
 [web]
 address = ":8080"
 
