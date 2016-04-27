@@ -1,0 +1,15 @@
+# traefik.toml
+logLevel = "INFO"
+traefikLogsFile = "/opt/traefik/log/traefik.log"
+accessLogsFile = "/opt/traefik/log/access.log"
+defaultEntryPoints = ["http"]
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+[web]
+address = ":8080"
+
+[file]
+filename = "/opt/traefik/rules.toml"
+watch = true
+

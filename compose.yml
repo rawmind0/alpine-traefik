@@ -1,0 +1,22 @@
+traefik:
+  tty: true
+  image: rawmind/rancher-traefik:0.0.3-22
+  volumes_from:
+    - zk-volume
+    - zk-conf
+  environment:
+    - JVMFLAGS=-Xmx${zk_mem}m -Xms${zk_mem}m
+    - SERVICE_CONF=1
+  labels: 
+    io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+    io.rancher.container.hostname_override: container_name
+    io.rancher.sidekicks: zk-volume, zk-conf
+traefik-conf:
+  net: none
+  environment:
+    - CONF_INTERVAL=${zk_interval}
+  labels:
+    io.rancher.container.hostname_override: container_name
+    io.rancher.container.start_once: true
+  entrypoint: /bin/true
+  image: busybox
