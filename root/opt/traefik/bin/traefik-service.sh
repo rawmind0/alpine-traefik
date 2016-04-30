@@ -6,7 +6,7 @@ function log {
 
 function serviceCheck {
     log "[ Generating ${SERVICE_NAME} configuration... ]"
-
+    ${SERVICE_HOME}/bin/traefik.toml.sh
 }
 
 function serviceStart {
@@ -24,6 +24,9 @@ function serviceRestart {
     serviceStop
     serviceStart
 }
+
+TRAEFIK_HTTP_PORT=${TRAEFIK_HTTP_PORT:-"8000"}
+TRAEFIK_ADMIN_PORT=${TRAEFIK_ADMIN_PORT:-"8080"}
 
 case "$1" in
         "start")
