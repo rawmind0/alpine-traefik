@@ -43,4 +43,4 @@ Add https automation to the docker.
 
 [traefik]: https://github.com/containous/traefik
 [rancher-traefik]: https://hub.docker.com/r/rawmind/rancher-traefik/
-[rancher-example]: https://github.com/rawmind0/alpine-traefik/rancher
+[rancher-example]: https://github.com/rawmind0/alpine-traefik/tree/master/rancher
