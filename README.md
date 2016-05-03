@@ -14,21 +14,28 @@ docker build -t rawmind/alpine-traefik:<version> .
 - `1.0.0-beta.555` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/master/Dockerfile)
 
 
-## Usage
+## Configuration
 
-This image runs [traefik][traefik] with monit. Traefik is installed under /opt/traefik and make use of /opt/traefik/etc/traefik.toml and /opt/traefik/etc/rules.toml. Http service is available at ${TRAEFIK_HTTP_PORT} and you could add frontend's and backend's throught the traefik rest-api available at ${TRAEFIK_ADMIN_PORT}. 
+This image runs [traefik][traefik] with monit. Besides, you can customize the configuration in several ways:
 
-If you are running it in rancher, you could run [rancher-traefik][rancher-traefik] as a sidekick to get dynamic configuration. 
+### Default Configuration
 
-You could also include `FROM rawmind/alpine-traefik` at the top of your `Dockerfile`, and add your custom config. 
+Traefic is installed with the default configuration and some parameters can be overrided with env variables:
 
+- TRAEFIK_HTTP_PORT
+- TRAEFIK_ADMIN_PORT
 
-## Default parameters
+### Custom Configuration
 
-These are the default parameters to run traefik. You could overwrite these values, setting environment variables.
+Traefik is installed under /opt/traefik and make use of /opt/traefik/etc/traefik.toml and /opt/traefik/etc/rules.toml.
 
-TRAEFIK_HTTP_PORT=${TRAEFIK_HTTP_PORT:-"8080"}
-TRAEFIK_ADMIN_PORT=${TRAEFIK_ADMIN_PORT:-"8000"}
+You can edit this files in order customize configuratin
+
+You could also include FROM rawmind/alpine-traefik at the top of your Dockerfile, and add your custom config.
+
+### Rancher
+
+If you are running it in rancher, you could run rancher-traefik as a sidekick to get dynamic configuration.
 
 
 ## Example
@@ -38,7 +45,7 @@ See [rancher-example][rancher-example], that run a traefik lb in all infrastruct
 
 ## TODO
 
-Add https automation to the docker.
+Add https automation to the traefik.
 
 
 [traefik]: https://github.com/containous/traefik
