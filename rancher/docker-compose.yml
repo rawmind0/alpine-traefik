@@ -9,7 +9,7 @@ traefik:
     io.rancher.container.hostname_override: container_name
   tty: true
   log_opt: {}
-  image: rawmind/alpine-traefik:1.0.0-beta.555-4
+  image: rawmind/alpine-traefik:1.0.0-beta.555-5
   environment:
   - TRAEFIK_HTTP_PORT=${http_port}
   - TRAEFIK_ADMIN_PORT=${admin_port}
