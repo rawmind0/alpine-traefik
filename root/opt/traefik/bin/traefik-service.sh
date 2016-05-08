@@ -29,6 +29,8 @@ function serviceRestart {
 TRAEFIK_HTTP_PORT=${TRAEFIK_HTTP_PORT:-"8080"}
 TRAEFIK_ADMIN_PORT=${TRAEFIK_ADMIN_PORT:-"8000"}
 
+export TRAEFIK_HTTP_PORT TRAEFIK_ADMIN_PORT
+
 case "$1" in
         "start")
             serviceStart
