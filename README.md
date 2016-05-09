@@ -35,7 +35,7 @@ You could also include FROM rawmind/alpine-traefik at the top of your Dockerfile
 
 ### Rancher
 
-If you are running it in rancher, you could run rancher-traefik as a sidekick to get dynamic configuration.
+If you are running it in rancher, you could run [rancher-traefik][rancher-traefik] as a sidekick to get dynamic configuration.
 
 
 ## Example
