@@ -15,4 +15,4 @@ address = ":${TRAEFIK_ADMIN_PORT}"
 [file]
 filename = "/opt/traefik/etc/rules.toml"
 watch = true
-
+EOF
