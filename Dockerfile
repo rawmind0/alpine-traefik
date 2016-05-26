@@ -4,7 +4,7 @@ MAINTAINER Raul Sanchez <rawmind@gmail.com>
 #Set environment
 ENV SERVICE_NAME=traefik \
     SERVICE_HOME=/opt/traefik \
-    SERVICE_VERSION=v1.0.0-beta.555 \
+    SERVICE_VERSION=v1.0.0-beta.771 \
     SERVICE_URL=https://github.com/containous/traefik/releases/download
 ENV SERVICE_RELEASE=${SERVICE_URL}/${SERVICE_VERSION}/traefik_linux-amd64 \
     PATH=${PATH}:${SERVICE_HOME}/bin 
