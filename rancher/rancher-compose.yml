@@ -28,7 +28,7 @@
 traefik:
   retain_ip: true
   health_check:
-    port: ${admin_port}
+    port: 8000
     interval: 5000
     unhealthy_threshold: 3
     request_line: 'GET /dashboard/# HTTP/1.0'
