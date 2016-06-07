@@ -5,7 +5,7 @@ cat << EOF > ${SERVICE_HOME}/etc/traefik.toml
 logLevel = "INFO"
 traefikLogsFile = "/opt/traefik/log/traefik.log"
 accessLogsFile = "/opt/traefik/log/access.log"
-defaultEntryPoints = ["http"]
+defaultEntryPoints = ["http", "https"]
 [entryPoints]
   [entryPoints.http]
   address = ":${TRAEFIK_HTTP_PORT}"

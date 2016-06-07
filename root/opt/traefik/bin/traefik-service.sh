@@ -12,7 +12,7 @@ function serviceCheck {
 function serviceStart {
     serviceCheck
     log "[ Starting ${SERVICE_NAME}... ]"
-    nohup ${SERVICE_HOME}/bin/traefik --configFile ${SERVICE_HOME}/etc/traefik.toml &
+    nohup ${SERVICE_HOME}/bin/traefik --configFile=${SERVICE_HOME}/etc/traefik.toml &
 }
 
 function serviceStop {
@@ -30,7 +30,7 @@ TRAEFIK_HTTP_PORT=${TRAEFIK_HTTP_PORT:-"8080"}
 TRAEFIK_HTTPS_PORT=${TRAEFIK_HTTP_PORT:-"8433"}
 TRAEFIK_ADMIN_PORT=${TRAEFIK_ADMIN_PORT:-"8000"}
 
-export TRAEFIK_HTTP_PORT TRAEFIK_ADMIN_PORT
+export TRAEFIK_HTTP_PORT TRAEFIK_HTTPS_PORT TRAEFIK_ADMIN_PORT
 
 case "$1" in
         "start")
