@@ -1,7 +1,8 @@
 traefik:
   ports:
-  - ${admin_port}:${admin_port}/tcp
-  - ${http_port}:${http_port}/tcp
+  - ${admin_port}:8000/tcp
+  - ${http_port}:8080/tcp
+  - ${https_port}:8443/tcp
   log_driver: ''
   labels:
     io.rancher.scheduler.global: 'true'
@@ -13,8 +14,6 @@ traefik:
   log_opt: {}
   image: rawmind/alpine-traefik:1.0.0-beta.555-6
   environment:
-  - TRAEFIK_HTTP_PORT=${http_port}
-  - TRAEFIK_ADMIN_PORT=${admin_port}
   - CONF_INTERVAL=${refresh_interval}
   volumes_from:
   - traefik-conf

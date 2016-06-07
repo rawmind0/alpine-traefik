@@ -9,6 +9,12 @@ defaultEntryPoints = ["http"]
 [entryPoints]
   [entryPoints.http]
   address = ":${TRAEFIK_HTTP_PORT}"
+  [entryPoints.https]
+  address = ":${TRAEFIK_HTTPS_PORT}"
+    [entryPoints.https.tls]
+      [[entryPoints.https.tls.certificates]]
+      certFile = "/opt/traefik/certs/traefik.crt"
+      keyFile = "/opt/traefik/certs/traefik.key"
 [web]
 address = ":${TRAEFIK_ADMIN_PORT}"
 
