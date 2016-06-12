@@ -12,7 +12,7 @@ traefik:
     io.rancher.container.hostname_override: container_name
   tty: true
   log_opt: {}
-  image: rawmind/alpine-traefik:1.0.0-rc2
+  image: rawmind/alpine-traefik:1.0.0-rc2-1
   environment:
   - CONF_INTERVAL=${refresh_interval}
   volumes_from:
@@ -26,6 +26,6 @@ traefik-conf:
     io.rancher.container.start_once: 'true'
   tty: true
   log_opt: {}
-  image: rawmind/rancher-traefik:0.0.1-10
+  image: rawmind/rancher-traefik:0.0.1-12
   net: none
 
