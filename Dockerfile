@@ -1,10 +1,10 @@
-FROM rawmind/alpine-monit:0.3.3-2
+FROM rawmind/alpine-monit:0.5.18
 MAINTAINER Raul Sanchez <rawmind@gmail.com>
 
 #Set environment
 ENV SERVICE_NAME=traefik \
     SERVICE_HOME=/opt/traefik \
-    SERVICE_VERSION=v1.0.0-rc1 \
+    SERVICE_VERSION=v1.0.0-rc2 \
     SERVICE_URL=https://github.com/containous/traefik/releases/download
 ENV SERVICE_RELEASE=${SERVICE_URL}/${SERVICE_VERSION}/traefik_linux-amd64 \
     PATH=${PATH}:${SERVICE_HOME}/bin 
