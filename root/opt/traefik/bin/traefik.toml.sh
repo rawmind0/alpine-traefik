@@ -3,8 +3,8 @@
 cat << EOF > ${SERVICE_HOME}/etc/traefik.toml
 # traefik.toml
 logLevel = "${TRAEFIK_LOG_LEVEL}"
-traefikLogsFile = "/opt/traefik/log/traefik.log"
-accessLogsFile = "/opt/traefik/log/access.log"
+traefikLogsFile = "${TRAEFIK_LOG_FILE}"
+accessLogsFile = "${SERVICE_HOME}/log/access.log"
 defaultEntryPoints = ["http", "https"]
 [entryPoints]
   [entryPoints.http]
@@ -13,12 +13,12 @@ defaultEntryPoints = ["http", "https"]
   address = ":${TRAEFIK_HTTPS_PORT}"
     [entryPoints.https.tls]
       [[entryPoints.https.tls.certificates]]
-      certFile = "/opt/traefik/certs/traefik.crt"
-      keyFile = "/opt/traefik/certs/traefik.key"
+      certFile = "${SERVICE_HOME}/certs/traefik.crt"
+      keyFile = "${SERVICE_HOME}/certs/traefik.key"
 [web]
 address = ":${TRAEFIK_ADMIN_PORT}"
 
 [file]
-filename = "/opt/traefik/etc/rules.toml"
+filename = "${SERVICE_HOME}/etc/rules.toml"
 watch = true
 EOF

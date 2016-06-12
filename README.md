@@ -1,7 +1,7 @@
 alpine-traefik 
 ==============
 
-This image is the traefik base. It comes from rawmind/alpine-monit.
+This image is the traefik base. It comes from [alpine-monit][alpine-monit].
 
 ## Build
 
@@ -11,7 +11,10 @@ docker build -t rawmind/alpine-traefik:<version> .
 
 ## Versions
 
-- `1.0.0-beta.555` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/master/Dockerfile)
+- `1.0.0-rc2` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.0-rc2/Dockerfile)
+- `1.0.0-rc1-3` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.0-rc1-3/Dockerfile)
+- `1.0.0-beta.771` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.0-beta.771/Dockerfile)
+- `1.0.0-beta.555-6` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.0-beta.555-6/Dockerfile)
 
 
 ## Configuration
@@ -22,8 +25,10 @@ This image runs [traefik][traefik] with monit. Besides, you can customize the co
 
 Traefic is installed with the default configuration and some parameters can be overrided with env variables:
 
-- TRAEFIK_HTTP_PORT
-- TRAEFIK_ADMIN_PORT
+- TRAEFIK_HTTP_PORT=8080
+- TRAEFIK_HTTPS_PORT=8443
+- TRAEFIK_ADMIN_PORT=8000
+- TRAEFIK_LOG_LEVEL="INFO"
 
 ### Custom Configuration
 
@@ -47,7 +52,7 @@ See [rancher-example][rancher-example], that run a traefik lb in all infrastruct
 
 Add https automation to the traefik.
 
-
+[alpine-monit]: https://github.com/rawmind0/alpine-monit/
 [traefik]: https://github.com/containous/traefik
 [rancher-traefik]: https://hub.docker.com/r/rawmind/rancher-traefik/
 [rancher-example]: https://github.com/rawmind0/alpine-traefik/tree/master/rancher
