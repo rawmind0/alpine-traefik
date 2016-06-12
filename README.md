@@ -34,8 +34,10 @@ Traefic is installed with the default configuration and some parameters can be o
 ### Custom Configuration
 
 Traefik is installed under /opt/traefik and make use of /opt/traefik/etc/traefik.toml and /opt/traefik/etc/rules.toml.
+SSL certificates are located in /opt/traefik/certs using by default /opt/traefik/certs/traefik.key /opt/traefik/certs/traefik.crt
 
-You can edit this files in order customize configuratin
+You can edit or overwrite this files in order to customize your own configuration or certificates.
+
 
 You could also include FROM rawmind/alpine-traefik at the top of your Dockerfile, and add your custom config.
 
@@ -51,7 +53,7 @@ See [rancher-example][rancher-example], that run a traefik lb in all infrastruct
 
 ## TODO
 
-Add https automation to the traefik.
+Add sni automation to the traefik.
 
 [alpine-monit]: https://github.com/rawmind0/alpine-monit/
 [traefik]: https://github.com/containous/traefik
