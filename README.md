@@ -45,7 +45,7 @@ If you are running it in rancher, you could run [rancher-traefik][rancher-traefi
 
 ## Example
 
-See [rancher-example][rancher-example], that run a traefik lb in all infrastructure servers and publish ${TRAEFIK_HTTP_PORT} and ${TRAEFIK_ADMIN_PORT} throught them.
+See [rancher-example][rancher-example], that run a traefik lb in all infrastructure servers and publish ${TRAEFIK_HTTP_PORT}, ${TRAEFIK_HTTPS_PORT} and ${TRAEFIK_ADMIN_PORT} throught them.
 
 
 ## TODO
