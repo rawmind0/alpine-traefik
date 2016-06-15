@@ -8,6 +8,7 @@
 ### Config:
 
 - http_port = 8080  # Port exposed to get access to the published services.
+- https_port = 8443  # Port exposed to get secured access to the published services.
 - admin_port = 8000  # Port exposed to get admin access to the traefik service.
 - refresh_interval = 60s  # Interval to refresh traefik rules.toml from rancher-metadata.
 
@@ -16,7 +17,7 @@
 Traefik labels has to be added in your services, in order to get included in traefik dynamic config.
 
 - traefik.enable = <true | false> 
-- traefik.domain = < domainname to route rule > 
+- traefik.domain = < domain names to route rule. Multiple values separated by "," > 
 - traefik.port = < port to expose throught traefik > 
  
  

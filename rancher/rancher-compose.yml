@@ -13,12 +13,30 @@
       required: true
       default: 8080
       type: "int"
+    - variable: "https_port"
+      description: "Traefik https public port to listen."
+      label: "Http port:"
+      required: true
+      default: 8443
+      type: "int"
     - variable: "admin_port"
       description: "Traefik admin public port to listen."
       label: "Admin port:"
       required: true
       default: 8000 
       type: "string"
+    - variable: "ssl_key"
+      description: "SSL key to secure the service"
+      label: "SSL key"
+      type: "multiline"
+      required: true
+      default: ""
+    - variable: "ssl_crt"
+      description: "SSL cert to secure the service"
+      label: "SSL crt"
+      type: "multiline"
+      required: true
+      default: ""
     - variable: "refresh_interval"
       description: "Interval to poll/apply configuration changes." 
       label: "Refresh Interval (s):"
@@ -34,3 +52,9 @@ traefik:
     request_line: 'GET /dashboard/# HTTP/1.0'
     healthy_threshold: 2
     response_timeout: 5000
+  metadata:
+    traefik:
+      ssl_key: |
+        ${ssl_key}
+      ssl_crt: |
+        ${ssl_crt}
