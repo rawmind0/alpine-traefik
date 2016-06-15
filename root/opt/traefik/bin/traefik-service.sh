@@ -17,6 +17,13 @@ function serviceCheck {
     ${SERVICE_HOME}/bin/traefik.toml.sh
 }
 
+function serviceSsl {
+    if [ ${TRAEFIK_SSL_KEY} -ne "" ]
+        log "[ Configuring ${SERVICE_NAME} ssl key and cert... ]"
+        ${SERVICE_HOME}/bin/traefik.toml.sh
+    fi
+}
+
 function serviceStart {
     serviceCheck
     log "[ Starting ${SERVICE_NAME}... ]"
@@ -34,11 +41,14 @@ function serviceRestart {
     serviceStart
 }
 
-TRAEFIK_HTTP_PORT=${TRAEFIK_HTTP_PORT:-"8080"}
-TRAEFIK_HTTPS_PORT=${TRAEFIK_HTTPS_PORT:-"8443"}
-TRAEFIK_ADMIN_PORT=${TRAEFIK_ADMIN_PORT:-"8000"}
-TRAEFIK_LOG_LEVEL=${TRAEFIK_LOG_LEVEL:-"INFO"}
-TRAEFIK_LOG_FILE=${TRAEFIK_LOG_FILE:-"${SERVICE_HOME}/log/traefik.log"}
+export TRAEFIK_ENTRYPOINTS=${TRAEFIK_ENTRYPOINTS:-'"http"'}
+export TRAEFIK_HTTP_PORT=${TRAEFIK_HTTP_PORT:-"8080"}
+export TRAEFIK_HTTPS_PORT=${TRAEFIK_HTTPS_PORT:-"8443"}
+export TRAEFIK_ADMIN_PORT=${TRAEFIK_ADMIN_PORT:-"8000"}
+export TRAEFIK_LOG_LEVEL=${TRAEFIK_LOG_LEVEL:-"INFO"}
+export TRAEFIK_LOG_FILE=${TRAEFIK_LOG_FILE:-"${SERVICE_HOME}/log/traefik.log"}
+export TRAEFIK_SSL_PATH=${TRAEFIK_SSL_PATH:-"${SERVICE_HOME}/certs"}
+
 
 export TRAEFIK_HTTP_PORT TRAEFIK_HTTPS_PORT TRAEFIK_ADMIN_PORT TRAEFIK_LOG_FILE TRAEFIK_LOG_LEVEL
 
