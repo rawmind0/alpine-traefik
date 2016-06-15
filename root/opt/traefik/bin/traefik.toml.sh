@@ -13,8 +13,8 @@ if [ $RC -eq 0 ]; then
         if [ -f "$i.crt" ]; then
             TRAEFIK_SSL_OPTS=$TRAEFIK_SSL_OPTS"
       [[entryPoints.https.tls.certificates]]
-      certFile = ${i}.crt
-      keyFile = ${i}.key"
+      certFile = \"${i}.crt\"
+      keyFile = \"${i}.key\""
         fi
     done
     TRAEFIK_ENTRYPOINTS='"http", "https"'

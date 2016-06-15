@@ -17,15 +17,9 @@ function serviceCheck {
     ${SERVICE_HOME}/bin/traefik.toml.sh
 }
 
-function serviceSsl {
-    if [ ${TRAEFIK_SSL_KEY} -ne "" ]
-        log "[ Configuring ${SERVICE_NAME} ssl key and cert... ]"
-        ${SERVICE_HOME}/bin/traefik.toml.sh
-    fi
-}
-
 function serviceStart {
     serviceCheck
+    serviceLog
     log "[ Starting ${SERVICE_NAME}... ]"
     nohup ${SERVICE_HOME}/bin/traefik --configFile=${SERVICE_HOME}/etc/traefik.toml &
 }
@@ -54,14 +48,13 @@ export TRAEFIK_HTTP_PORT TRAEFIK_HTTPS_PORT TRAEFIK_ADMIN_PORT TRAEFIK_LOG_FILE 
 
 case "$1" in
         "start")
-            serviceLog
-            serviceStart
+            serviceStart &>> /proc/1/fd/1
         ;;
         "stop")
-            serviceStop
+            serviceStop &>> /proc/1/fd/1
         ;;
         "restart")
-            serviceRestart
+            serviceRestart &>> /proc/1/fd/1
         ;;
         *) echo "Usage: $0 restart|start|stop"
         ;;
