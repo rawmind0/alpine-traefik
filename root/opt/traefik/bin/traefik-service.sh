@@ -14,9 +14,6 @@ function serviceLog {
 
 function serviceCheck {
     log "[ Generating ${SERVICE_NAME} configuration... ]"
-    if [ -d "/opt/tools" ]; then
-        serviceConf
-    fi
     ${SERVICE_HOME}/bin/traefik.toml.sh
 }
 
