@@ -14,6 +14,9 @@ function serviceLog {
 
 function serviceCheck {
     log "[ Generating ${SERVICE_NAME} configuration... ]"
+    if [ -d "/opt/tools" ]; then
+        serviceConf
+    fi
     ${SERVICE_HOME}/bin/traefik.toml.sh
 }
 
@@ -22,17 +25,19 @@ function serviceStart {
     serviceLog
     log "[ Starting ${SERVICE_NAME}... ]"
     nohup ${SERVICE_HOME}/bin/traefik --configFile=${SERVICE_HOME}/etc/traefik.toml &
+    echo $! > ${SERVICE_HOME}/traefik.pid
 }
 
 function serviceStop {
     log "[ Stoping ${SERVICE_NAME}... ]"
-    killall traefik
+    kill `cat /opt/traefik/traefik.pid`
 }
 
 function serviceRestart {
     log "[ Restarting ${SERVICE_NAME}... ]"
     serviceStop
     serviceStart
+    /opt/monit/bin/monit reload
 }
 
 export TRAEFIK_ENTRYPOINTS=${TRAEFIK_ENTRYPOINTS:-'"http"'}
@@ -60,3 +65,4 @@ case "$1" in
         ;;
 
 esac
+
