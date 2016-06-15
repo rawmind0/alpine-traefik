@@ -7,9 +7,12 @@
 
 ### Config:
 
+- host_label = "traefik_lb=true" # Host label where to run traefik service.
 - http_port = 8080  # Port exposed to get access to the published services.
 - https_port = 8443  # Port exposed to get secured access to the published services.
 - admin_port = 8000  # Port exposed to get admin access to the traefik service.
+- ssl_key # Paste your ssl key. Optional
+- ssl_crt # Paste your ssl crt. Optional
 - refresh_interval = 60s  # Interval to refresh traefik rules.toml from rancher-metadata.
 
 ### Service configuration labels:
@@ -17,17 +20,24 @@
 Traefik labels has to be added in your services, in order to get included in traefik dynamic config.
 
 - traefik.enable = <true | false> 
+  - true: the service will be published as *service_name.stack_name.traefik_domain*
+  - stack: the service will be published as *stack_name.domain*. WARNING: You can have collisions inside services within yout stack
+  - false: the service will not be published
 - traefik.domain = < domain names to route rule. Multiple values separated by "," > 
-- traefik.port = < port to expose throught traefik > 
- 
+- traefik.port = < port to expose throught traefik >  
  
 ### Usage:
 
  Select Traefik from catalog. 
  
- Enter the http_port, admin_port and refresh_interval.
+ Set the params.
 
  Click deploy.
 
- Services will be accessed throught hosts whith traefik_lb=true at http://${service_name}.${service_name}.${traefik.domain}:${http_port}
+ Services will be accessed throught hosts whith traefik_lb=true at: 
+ - http://${service_name}.${stack_name}.${traefik.domain}:${http_port}
+ - https://${service_name}.${stack_name}.${traefik.domain}:${https_port}
+ or 
+ - http://${stack_name}.${traefik.domain}:${http_port}
+ - https://${stack_name}.${traefik.domain}:${https_port}
 

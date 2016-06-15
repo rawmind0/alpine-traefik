@@ -7,6 +7,12 @@
   maintainer: "Raul Sanchez <rawmind@gmail.com>"
   uuid: traefik-0
   questions:
+    - variable: "host_label"
+      description: "Host label where to run traefik service."
+      label: "Host label:"
+      required: true
+      default: "traefik_lb=true" 
+      type: "string"
     - variable: "http_port"
       description: "Traefik http public port to listen."
       label: "Http port:"
@@ -24,18 +30,18 @@
       label: "Admin port:"
       required: true
       default: 8000 
-      type: "string"
+      type: "int"
     - variable: "ssl_key"
       description: "SSL key to secure the service"
       label: "SSL key"
       type: "multiline"
-      required: true
+      required: false
       default: ""
     - variable: "ssl_crt"
       description: "SSL cert to secure the service"
       label: "SSL crt"
       type: "multiline"
-      required: true
+      required: false
       default: ""
     - variable: "refresh_interval"
       description: "Interval to poll/apply configuration changes." 

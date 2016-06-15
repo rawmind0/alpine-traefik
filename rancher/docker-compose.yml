@@ -6,13 +6,13 @@ traefik:
   log_driver: ''
   labels:
     io.rancher.scheduler.global: 'true'
-    io.rancher.scheduler.affinity:host_label: traefik_lb=true
+    io.rancher.scheduler.affinity:host_label: ${host_label}
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.sidekicks: traefik-conf
     io.rancher.container.hostname_override: container_name
   tty: true
   log_opt: {}
-  image: rawmind/alpine-traefik:1.0.0-rc2-3
+  image: rawmind/alpine-traefik:1.0.0-rc2-4
   environment:
   - CONF_INTERVAL=${refresh_interval}
   volumes_from:
