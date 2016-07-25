@@ -1,6 +1,6 @@
 .catalog:
   name: traefik
-  version: v1.0.0-rancher1
+  version: v1.0.1-rancher1
   description: |
     (Experimental) Traefik load balancer.
   minimum_rancher_version: v0.59.0
@@ -31,6 +31,17 @@
       required: true
       default: 8000 
       type: "int"
+    - variable: "https_enable"
+      label: "Enable HTTPS:"
+      description: |
+        Enable https working mode. If you activate, you need to fill SSL key and SSL crt in order to work.
+      default: false
+      required: true
+      type: enum
+      options:
+        - false
+        - true
+        - only
     - variable: "ssl_key"
       description: "SSL key to secure the service"
       label: "SSL key"
