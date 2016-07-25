@@ -11,8 +11,12 @@
 - http_port = 8080  # Port exposed to get access to the published services.
 - https_port = 8443  # Port exposed to get secured access to the published services.
 - admin_port = 8000  # Port exposed to get admin access to the traefik service.
-- ssl_key # Paste your ssl key. Optional
-- ssl_crt # Paste your ssl crt. Optional
+- https_enable = <false | true | only>
+  - false: Enable http enpoints and disable https ones.
+  - true: Enable http and https endpoints.
+  - only: Disable http endpoints and enable https ones.
+- ssl_key # Paste your ssl key. Defaul value a test one
+- ssl_crt # Paste your ssl crt. Defaul value a test one
 - refresh_interval = 60s  # Interval to refresh traefik rules.toml from rancher-metadata.
 
 ### Service configuration labels:
