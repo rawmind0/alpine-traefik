@@ -30,7 +30,7 @@ Besides, you can customize the configuration in several ways:
 Traefic is installed with the default configuration and some parameters can be overrided with env variables:
 
 - TRAEFIK_HTTP_PORT=8080					# http port > 1024 due to run as non privileged user
-- TRAEFIK_HTTPS_ENABLE="false"				# "true" enables https and http endpoints. "Only" enables https endpoints and disables http.
+- TRAEFIK_HTTPS_ENABLE="false"				# "true" enables https and http endpoints. "Only" enables https endpoints and disables http. "redirect" enables http redirect on https.
 - TRAEFIK_HTTPS_PORT=8443					# https port > 1024 due to run as non privileged user
 - TRAEFIK_ADMIN_PORT=8000					# admin port > 1024 due to run as non privileged user
 - TRAEFIK_LOG_LEVEL="INFO"					# Log level
