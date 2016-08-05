@@ -2,7 +2,9 @@
 
 TRAEFIK_ENTRYPOINTS_HTTP="\
   [entryPoints.http]
-  address = \":${TRAEFIK_HTTP_PORT}\""
+  address = \":${TRAEFIK_HTTP_PORT}\"\
+
+"
 
 # Check that you provide key/crt files and add them to the config
 filelist=`ls -1 ${TRAEFIK_SSL_PATH}/*.key | cut -d"." -f1`
