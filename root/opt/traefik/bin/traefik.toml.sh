@@ -43,7 +43,7 @@ traefikLogsFile = "${TRAEFIK_LOG_FILE}"
 accessLogsFile = "${SERVICE_HOME}/log/access.log"
 defaultEntryPoints = [${TRAEFIK_ENTRYPOINTS}]
 [entryPoints]
-  ${TRAEFIK_ENTRYPOINTS_OPTS}
+${TRAEFIK_ENTRYPOINTS_OPTS}
 [web]
 address = ":${TRAEFIK_ADMIN_PORT}"
 

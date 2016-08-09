@@ -15,8 +15,8 @@
   - false: Enable http enpoints and disable https ones.
   - true: Enable http and https endpoints.
   - only: Disable http endpoints and enable https ones.
-- ssl_key # Paste your ssl key. Defaul value a test one
-- ssl_crt # Paste your ssl crt. Defaul value a test one
+- ssl_key # Paste your ssl key. *Required if you enable https
+- ssl_crt # Paste your ssl crt. *Required if you enable https
 - refresh_interval = 60s  # Interval to refresh traefik rules.toml from rancher-metadata.
 
 ### Service configuration labels:
