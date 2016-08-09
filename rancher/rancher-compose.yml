@@ -43,13 +43,13 @@
         - true
         - only
     - variable: "ssl_key"
-      description: "SSL key to secure the service"
+      description: "SSL key to secure the service. *Required if you enable https"
       label: "SSL key"
       type: "multiline"
       required: false
       default: ""
     - variable: "ssl_crt"
-      description: "SSL cert to secure the service"
+      description: "SSL cert to secure the service. *Required if you enable https"
       label: "SSL crt"
       type: "multiline"
       required: false
