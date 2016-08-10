@@ -4,7 +4,7 @@ MAINTAINER Raul Sanchez <rawmind@gmail.com>
 #Set environment
 ENV SERVICE_NAME=traefik \
     SERVICE_HOME=/opt/traefik \
-    SERVICE_VERSION=v1.0.1 \
+    SERVICE_VERSION=v1.0.2 \
     SERVICE_USER=traefik \
     SERVICE_UID=10001 \
     SERVICE_GROUP=traefik \
