@@ -42,7 +42,7 @@ if [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xtrue" ] || [ "X${TRAEFIK_HTTPS_ENABLE}" == 
     TRAEFIK_ACME_CFG="\
 [acme]
 email = \"${TRAEFIK_ACME_EMAIL}\"
-storageFile = \"acme.json\"
+storageFile = \"/opt/tools/acme/acme.json\"
 onDemand = ${TRAEFIK_ACME_ONDEMAND}
 entryPoint = \"https\"
 
