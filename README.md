@@ -11,7 +11,7 @@ docker build -t rawmind/alpine-traefik:<version> .
 
 ## Versions
 
-- `1.0.2` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.2/Dockerfile)
+- `1.0.2-2` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.2-2/Dockerfile)
 - `1.0.1-4` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.1-4/Dockerfile)
 - `1.0.0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.0/Dockerfile)
 - `1.0.0-rc3-3` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.0-rc3-3/Dockerfile)
@@ -30,12 +30,14 @@ Besides, you can customize the configuration in several ways:
 
 Traefic is installed with the default configuration and some parameters can be overrided with env variables:
 
-- TRAEFIK_HTTP_PORT=8080					# http port > 1024 due to run as non privileged user
-- TRAEFIK_HTTPS_ENABLE="false"				# "true" enables https and http endpoints. "Only" enables https endpoints and disables http.
-- TRAEFIK_HTTPS_PORT=8443					# https port > 1024 due to run as non privileged user
-- TRAEFIK_ADMIN_PORT=8000					# admin port > 1024 due to run as non privileged user
-- TRAEFIK_LOG_LEVEL="INFO"					# Log level
-- TRAEFIK_SSL_PATH="/opt/traefik/certs"		# Path to search .key and .crt files
+- TRAEFIK_HTTP_PORT=8080								# http port > 1024 due to run as non privileged user
+- TRAEFIK_HTTPS_ENABLE="false"							# "true" enables https and http endpoints. "Only" enables https endpoints and disables http.
+- TRAEFIK_HTTPS_PORT=8443								# https port > 1024 due to run as non privileged user
+- TRAEFIK_ADMIN_PORT=8000								# admin port > 1024 due to run as non privileged user
+- TRAEFIK_LOG_LEVEL="INFO"								# Log level
+- TRAEFIK_LOG_FILE="/opt/traefik/log/traefik.log"}		#Log file. Redirected to docker stdout.
+- TRAEFIK_ACCESS_FILE="/opt/traefik/log/access.log"}	#Access file. Redirected to docker stdout.
+- TRAEFIK_SSL_PATH="/opt/traefik/certs"					# Path to search .key and .crt files
 
 ### Custom Configuration
 
