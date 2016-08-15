@@ -40,7 +40,7 @@ cat << EOF > ${SERVICE_HOME}/etc/traefik.toml
 # traefik.toml
 logLevel = "${TRAEFIK_LOG_LEVEL}"
 traefikLogsFile = "${TRAEFIK_LOG_FILE}"
-accessLogsFile = "${SERVICE_HOME}/log/access.log"
+accessLogsFile = "${TRAEFIK_ACCESS_FILE}"
 defaultEntryPoints = [${TRAEFIK_ENTRYPOINTS}]
 [entryPoints]
 ${TRAEFIK_ENTRYPOINTS_OPTS}

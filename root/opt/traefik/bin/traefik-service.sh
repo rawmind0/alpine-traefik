@@ -12,6 +12,14 @@ function serviceLog {
     ln -sf /proc/1/fd/1 ${TRAEFIK_LOG_FILE}
 }
 
+function serviceAccess {
+    log "[ Redirecting ${SERVICE_NAME} log... ]"
+    if [ -e ${TRAEFIK_ACCESS_FILE} ]; then
+        rm ${TRAEFIK_ACCESS_FILE}
+    fi
+    ln -sf /proc/1/fd/1 ${TRAEFIK_ACCESS_FILE}
+}
+
 function serviceCheck {
     log "[ Generating ${SERVICE_NAME} configuration... ]"
     ${SERVICE_HOME}/bin/traefik.toml.sh
@@ -20,6 +28,7 @@ function serviceCheck {
 function serviceStart {
     serviceCheck
     serviceLog
+    serviceAccess
     log "[ Starting ${SERVICE_NAME}... ]"
     nohup ${SERVICE_HOME}/bin/traefik --configFile=${SERVICE_HOME}/etc/traefik.toml &
     echo $! > ${SERVICE_HOME}/traefik.pid
@@ -43,6 +52,7 @@ export TRAEFIK_HTTPS_PORT=${TRAEFIK_HTTPS_PORT:-"8443"}
 export TRAEFIK_ADMIN_PORT=${TRAEFIK_ADMIN_PORT:-"8000"}
 export TRAEFIK_LOG_LEVEL=${TRAEFIK_LOG_LEVEL:-"INFO"}
 export TRAEFIK_LOG_FILE=${TRAEFIK_LOG_FILE:-"${SERVICE_HOME}/log/traefik.log"}
+export TRAEFIK_ACCESS_FILE=${TRAEFIK_ACCESS_FILE:-"${SERVICE_HOME}/log/access.log"}
 export TRAEFIK_SSL_PATH=${TRAEFIK_SSL_PATH:-"${SERVICE_HOME}/certs"}
 
 case "$1" in
