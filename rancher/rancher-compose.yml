@@ -42,6 +42,24 @@
         - false
         - true
         - only
+    - variable: "acme_enable"
+      description: "Enable acme support on traefik."
+      label: "Enable ACME:"
+      required: true
+      default: false 
+      type: "bool"
+    - variable: "acme_email"
+      description: "ACME user email."
+      label: "ACME email:"
+      required: true
+      default: "test@traefik.io" 
+      type: "string"
+    - variable: "acme_ondemand"
+      description: "Enable acme ondemand."
+      label: "ACME ondemand:"
+      required: true
+      default: true 
+      type: "bool"
     - variable: "ssl_key"
       description: "SSL key to secure the service. *Required if you enable https"
       label: "SSL key"
