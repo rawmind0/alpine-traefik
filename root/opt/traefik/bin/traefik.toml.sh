@@ -36,6 +36,21 @@ else
     TRAEFIK_ENTRYPOINTS='"http"'
 fi
 
+TRAEFIK_ACME_CFG=""
+if [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xtrue" ] || [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xonly" ] && [ "X${TRAEFIK_ACME_ENABLE}" == "Xtrue" ]; then
+
+    TRAEFIK_ACME_CFG="\
+[acme]
+email = \"${TRAEFIK_ACME_EMAIL}\"
+storageFile = \"/opt/tools/acme/acme.json\"
+onDemand = ${TRAEFIK_ACME_ONDEMAND}
+entryPoint = \"https\"
+
+"
+
+fi
+
+
 cat << EOF > ${SERVICE_HOME}/etc/traefik.toml
 # traefik.toml
 logLevel = "${TRAEFIK_LOG_LEVEL}"
@@ -50,4 +65,6 @@ address = ":${TRAEFIK_ADMIN_PORT}"
 [file]
 filename = "${SERVICE_HOME}/etc/rules.toml"
 watch = true
+
+${TRAEFIK_ACME_CFG}
 EOF
