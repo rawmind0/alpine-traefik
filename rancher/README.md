@@ -32,6 +32,7 @@ Traefik labels has to be added in your services, in order to get included in tra
   - false: the service will not be published
 - traefik.domain = < domain names to route rule. Multiple values separated by "," > 
 - traefik.port = < port to expose throught traefik >  
+- traefik.acme = < true | false >	# Enable/disable ACME traefik feature
  
 ### Usage:
 
