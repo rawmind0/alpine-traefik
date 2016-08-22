@@ -52,13 +52,18 @@ You could also include FROM rawmind/alpine-traefik at the top of your Dockerfile
 
 ### SSL Configuration
 
-Added SSL configuration. Set TRAEFIK_HTTPS_ENABLE="<true || only>" to enable it. 
+Added SSL configuration. Set TRAEFIK_HTTPS_ENABLE="< true || only >" to enable it. 
 
 SSL certificates are located by default in /opt/traefik/certs. You need to provide .key AND .crt files to that directory, in order traefik gets automatically configured with ssl.
 
 If you put more that one key/crt files in the certs directory, traefik gets sni enabled and configured. You also could map you cert storage volume to traefik and mount it in $TRAEFIK_SSL_PATH value.
 
 You could also include FROM rawmind/alpine-traefik at the top of your Dockerfile, and add your custom ssl files.
+
+### ACME Configuration
+
+If you enable SSL configuration, you could enable ACME support as well. To do it, set TRAEFIK_ACME_ENABLE="true".
+
 
 ### Rancher
 
