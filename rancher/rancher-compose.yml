@@ -76,7 +76,7 @@
       description: "Interval to poll/apply configuration changes." 
       label: "Refresh Interval (s):"
       required: true
-      default: 60 
+      default: 10 
       type: "int"
 traefik:
   retain_ip: true
