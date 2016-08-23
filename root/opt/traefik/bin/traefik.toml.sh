@@ -28,7 +28,8 @@ if [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xtrue" ]; then
 elif [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xonly" ]; then
     TRAEFIK_ENTRYPOINTS_HTTP=$TRAEFIK_ENTRYPOINTS_HTTP"
     [entryPoints.http.redirect]
-       entryPoint = \"https\""
+       entryPoint = \"https\"
+"
     TRAEFIK_ENTRYPOINTS_OPTS=${TRAEFIK_ENTRYPOINTS_HTTP}${TRAEFIK_ENTRYPOINTS_HTTPS}
     TRAEFIK_ENTRYPOINTS='"http", "https"'
 else 
