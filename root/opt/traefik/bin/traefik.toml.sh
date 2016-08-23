@@ -2,11 +2,8 @@
 
 TRAEFIK_ENTRYPOINTS_HTTP="\
   [entryPoints.http]
-  address = \":${TRAEFIK_HTTP_PORT}\"\
+  address = \":${TRAEFIK_HTTP_PORT}\""
 
-"
-
-# Check that you provide key/crt files and add them to the config
 filelist=`ls -1 ${TRAEFIK_SSL_PATH}/*.key | cut -d"." -f1`
 RC=`echo $?`
 
@@ -29,8 +26,11 @@ if [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xtrue" ]; then
     TRAEFIK_ENTRYPOINTS_OPTS=${TRAEFIK_ENTRYPOINTS_HTTP}${TRAEFIK_ENTRYPOINTS_HTTPS}
     TRAEFIK_ENTRYPOINTS='"http", "https"'
 elif [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xonly" ]; then
-    TRAEFIK_ENTRYPOINTS_OPTS=${TRAEFIK_ENTRYPOINTS_HTTPS}
-    TRAEFIK_ENTRYPOINTS='"https"'
+    TRAEFIK_ENTRYPOINTS_HTTP=$TRAEFIK_ENTRYPOINTS_HTTP"
+    [entryPoints.http.redirect]
+       entryPoint = \"https\""
+    TRAEFIK_ENTRYPOINTS_OPTS=${TRAEFIK_ENTRYPOINTS_HTTP}${TRAEFIK_ENTRYPOINTS_HTTPS}
+    TRAEFIK_ENTRYPOINTS='"http", "https"'
 else 
     TRAEFIK_ENTRYPOINTS_OPTS=${TRAEFIK_ENTRYPOINTS_HTTP}
     TRAEFIK_ENTRYPOINTS='"http"'
@@ -49,7 +49,6 @@ entryPoint = \"https\"
 "
 
 fi
-
 
 cat << EOF > ${SERVICE_HOME}/etc/traefik.toml
 # traefik.toml
