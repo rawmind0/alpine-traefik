@@ -2,7 +2,8 @@
 
 TRAEFIK_ENTRYPOINTS_HTTP="\
   [entryPoints.http]
-  address = \":${TRAEFIK_HTTP_PORT}\""
+  address = \":${TRAEFIK_HTTP_PORT}\"
+"
 
 filelist=`ls -1 ${TRAEFIK_SSL_PATH}/*.key | cut -d"." -f1`
 RC=`echo $?`
@@ -17,7 +18,8 @@ if [ $RC -eq 0 ]; then
             TRAEFIK_ENTRYPOINTS_HTTPS=$TRAEFIK_ENTRYPOINTS_HTTPS"
       [[entryPoints.https.tls.certificates]]
       certFile = \"${i}.crt\"
-      keyFile = \"${i}.key\""
+      keyFile = \"${i}.key\"
+"
         fi
     done
 fi
@@ -26,7 +28,7 @@ if [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xtrue" ]; then
     TRAEFIK_ENTRYPOINTS_OPTS=${TRAEFIK_ENTRYPOINTS_HTTP}${TRAEFIK_ENTRYPOINTS_HTTPS}
     TRAEFIK_ENTRYPOINTS='"http", "https"'
 elif [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xonly" ]; then
-    TRAEFIK_ENTRYPOINTS_HTTP=$TRAEFIK_ENTRYPOINTS_HTTP"
+    TRAEFIK_ENTRYPOINTS_HTTP=$TRAEFIK_ENTRYPOINTS_HTTP"\
     [entryPoints.http.redirect]
        entryPoint = \"https\"
 "
