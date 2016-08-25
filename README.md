@@ -62,9 +62,9 @@ If you put more that one key/crt files in the certs directory, traefik gets sni 
 
 You could also include FROM rawmind/alpine-traefik at the top of your Dockerfile, and add your custom ssl files.
 
-### ACME Configuration
+### Letsencrypt Configuration
 
-If you enable SSL configuration, you could enable ACME support as well. To do it, set TRAEFIK_ACME_ENABLE="true".
+If you enable SSL configuration, you could enable traefik letsencrypt support as well (ACME). To do it, set TRAEFIK_ACME_ENABLE="true".
 
 
 ### Rancher
