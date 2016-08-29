@@ -1,6 +1,6 @@
 traefik:
   ports:
-  - ${admin_port}/tcp
+  - ${admin_port}:8000/tcp
   - ${http_port}/tcp
   - ${https_port}/tcp
   log_driver: ''
@@ -17,7 +17,6 @@ traefik:
   - CONF_INTERVAL=${refresh_interval}
   - TRAEFIK_HTTP_PORT=${http_port}
   - TRAEFIK_HTTPS_PORT=${https_port}
-  - TRAEFIK_ADMIN_PORT=${admin_port}
   - TRAEFIK_HTTPS_ENABLE=${https_enable}
   - TRAEFIK_ACME_ENABLE=${acme_enable}
   - TRAEFIK_ACME_EMAIL=${acme_email}
