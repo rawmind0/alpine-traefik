@@ -46,17 +46,8 @@ function serviceRestart {
     /opt/monit/bin/monit reload
 }
 
-export TRAEFIK_HTTP_PORT=${TRAEFIK_HTTP_PORT:-"8080"}
-export TRAEFIK_HTTPS_ENABLE=${TRAEFIK_HTTPS_ENABLE:-"false"}
-export TRAEFIK_HTTPS_PORT=${TRAEFIK_HTTPS_PORT:-"8443"}
-export TRAEFIK_ADMIN_PORT=${TRAEFIK_ADMIN_PORT:-"8000"}
-export TRAEFIK_LOG_LEVEL=${TRAEFIK_LOG_LEVEL:-"INFO"}
 export TRAEFIK_LOG_FILE=${TRAEFIK_LOG_FILE:-"${SERVICE_HOME}/log/traefik.log"}
 export TRAEFIK_ACCESS_FILE=${TRAEFIK_ACCESS_FILE:-"${SERVICE_HOME}/log/access.log"}
-export TRAEFIK_SSL_PATH=${TRAEFIK_SSL_PATH:-"${SERVICE_HOME}/certs"}
-export TRAEFIK_ACME_ENABLE=${TRAEFIK_ACME_ENABLE:-"false"}
-export TRAEFIK_ACME_EMAIL=${TRAEFIK_ACME_EMAIL:-"test@traefik.io"}
-export TRAEFIK_ACME_ONDEMAND=${TRAEFIK_ACME_ONDEMAND:-"true"}
 
 case "$1" in
         "start")

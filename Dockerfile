@@ -21,13 +21,12 @@ RUN mkdir -p ${SERVICE_HOME}/bin ${SERVICE_HOME}/etc ${SERVICE_HOME}/log ${SERVI
     mv traefik_linux-amd64 traefik && \
     chmod +x ${SERVICE_HOME}/bin/traefik && \
     addgroup -g ${SERVICE_GID} ${SERVICE_GROUP} && \
-    adduser -g "${SERVICE_NAME} user" -D -h ${SERVICE_HOME} -G ${SERVICE_GROUP} -s /sbin/nologin -u ${SERVICE_UID} ${SERVICE_USER} && \
-    setcap 'cap_net_bind_service=+ep' ${SERVICE_HOME}/bin/traefik 
+    adduser -g "${SERVICE_NAME} user" -D -h ${SERVICE_HOME} -G ${SERVICE_GROUP} -s /sbin/nologin -u ${SERVICE_UID} ${SERVICE_USER} 
 ADD root /
 RUN chmod +x ${SERVICE_HOME}/bin/*.sh && \
-    chown -R ${SERVICE_USER}:${SERVICE_GROUP} ${SERVICE_HOME} /opt/monit
+    chown -R ${SERVICE_USER}:${SERVICE_GROUP} ${SERVICE_HOME} /opt/monit && \
+    setcap 'cap_net_bind_service=+ep' ${SERVICE_HOME}/bin/traefik
 
 USER $SERVICE_USER
 WORKDIR $SERVICE_HOME
 
-EXPOSE 8000 8080 8443
