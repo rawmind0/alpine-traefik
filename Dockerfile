@@ -1,7 +1,7 @@
-FROM rawmind/alpine-monit:0.5.19-1
+FROM rawmind/alpine-monit:0.5.19-2
 MAINTAINER Raul Sanchez <rawmind@gmail.com>
 
-#Set environment
+# Set environment
 ENV SERVICE_NAME=traefik \
     SERVICE_HOME=/opt/traefik \
     SERVICE_VERSION=v1.0.3 \
@@ -19,6 +19,7 @@ RUN mkdir -p ${SERVICE_HOME}/bin ${SERVICE_HOME}/etc ${SERVICE_HOME}/log ${SERVI
     cd ${SERVICE_HOME}/bin && \
     curl -jksSL "${SERVICE_RELEASE}" -O && \
     mv traefik_linux-amd64 traefik && \
+    touch ${SERVICE_HOME}/etc/rules.toml && \
     chmod +x ${SERVICE_HOME}/bin/traefik && \
     addgroup -g ${SERVICE_GID} ${SERVICE_GROUP} && \
     adduser -g "${SERVICE_NAME} user" -D -h ${SERVICE_HOME} -G ${SERVICE_GROUP} -s /sbin/nologin -u ${SERVICE_UID} ${SERVICE_USER} 
