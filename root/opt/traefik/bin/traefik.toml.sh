@@ -11,6 +11,8 @@ TRAEFIK_SSL_PATH=${TRAEFIK_SSL_PATH:-"${SERVICE_HOME}/certs"}
 TRAEFIK_ACME_ENABLE=${TRAEFIK_ACME_ENABLE:-"false"}
 TRAEFIK_ACME_EMAIL=${TRAEFIK_ACME_EMAIL:-"test@traefik.io"}
 TRAEFIK_ACME_ONDEMAND=${TRAEFIK_ACME_ONDEMAND:-"true"}
+TRAEFIK_K8S_ENABLE=${TRAEFIK_K8S_ENABLE:-"false"}
+TRAEFIK_K8S_OPTS=${TRAEFIK_K8S_OPTS:-""}
 
 TRAEFIK_ENTRYPOINTS_HTTP="\
   [entryPoints.http]
@@ -51,6 +53,10 @@ else
     TRAEFIK_ENTRYPOINTS='"http"'
 fi
 
+if [ "X${TRAEFIK_K8S_ENABLE}" == "Xtrue" ]; then
+    TRAEFIK_K8S_OPTS="[kubernetes]"
+fi
+
 TRAEFIK_ACME_CFG=""
 if [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xtrue" ] || [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xonly" ] && [ "X${TRAEFIK_ACME_ENABLE}" == "Xtrue" ]; then
 
@@ -75,6 +81,8 @@ defaultEntryPoints = [${TRAEFIK_ENTRYPOINTS}]
 ${TRAEFIK_ENTRYPOINTS_OPTS}
 [web]
 address = ":${TRAEFIK_ADMIN_PORT}"
+
+${TRAEFIK_K8S_OPTS}
 
 [file]
 filename = "${SERVICE_HOME}/etc/rules.toml"
