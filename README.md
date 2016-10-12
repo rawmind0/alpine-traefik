@@ -13,6 +13,7 @@ docker build -t rawmind/alpine-traefik:<version> .
 
 ## Versions
 
+- `1.0.3-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.3-1/Dockerfile)
 - `1.0.2-6` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.2-6/Dockerfile)
 - `1.0.1-4` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.1-4/Dockerfile)
 - `1.0.0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.0/Dockerfile)
@@ -43,6 +44,7 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_ACME_ENABLE="false"							# Enable/disable traefik ACME feature
 - TRAEFIK_ACME_EMAIL="test@traefik.io"					# Default email
 - TRAEFIK_ACME_ONDEMAND="true"							# ACME ondemand parameter
+- TRAEFIK_K8S_ENABLE="false"							# Enable/disable traefik K8S feature
 
 ### Custom Configuration
 
