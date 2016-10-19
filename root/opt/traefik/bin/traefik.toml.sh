@@ -62,7 +62,7 @@ fi
 
 TRAEFIK_ACME_STORAGE=""
 if [ "X${TRAEFIK_ETCD_ENABLE}" == "Xtrue" ]; then
-  TRAEFIK_ACME_STORAGE="storage = \"traefik/acme/account\""
+  TRAEFIK_ACME_STORAGE="storage = \"/traefik/acme/account\""
 else
   TRAEFIK_ACME_STORAGE="storageFile = \"${SERVICE_HOME}/acme/acme.json\""
 fi
