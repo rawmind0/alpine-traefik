@@ -78,6 +78,8 @@ onDemand = ${TRAEFIK_ACME_ONDEMAND}
 entryPoint = \"https\"
 
 "
+fi
+
 TRAEFIK_ETCD_CONFIG=""
 if [ "X${TRAEFIK_ETCD_ENABLE}" == "Xtrue" ]; then
   TRAEFIK_ETCD_CONFIG="\
