@@ -27,6 +27,7 @@ if [ $RC -eq 0 ]; then
   [entryPoints.https]
   address = \":${TRAEFIK_HTTPS_PORT}\"
     [entryPoints.https.tls]"
+  if [ "X${TRAEFIK_ACME_ENABLE}" != "Xtrue" ]; then
     for i in $filelist; do
         if [ -f "$i.crt" ]; then
             TRAEFIK_ENTRYPOINTS_HTTPS=$TRAEFIK_ENTRYPOINTS_HTTPS"
@@ -36,6 +37,7 @@ if [ $RC -eq 0 ]; then
 "
         fi
     done
+  fi
 fi
 
 if [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xtrue" ]; then
