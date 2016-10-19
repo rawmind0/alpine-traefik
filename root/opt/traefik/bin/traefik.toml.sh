@@ -13,7 +13,7 @@ TRAEFIK_ACME_EMAIL=${TRAEFIK_ACME_EMAIL:-"test@traefik.io"}
 TRAEFIK_ACME_ONDEMAND=${TRAEFIK_ACME_ONDEMAND:-"true"}
 TRAEFIK_K8S_ENABLE=${TRAEFIK_K8S_ENABLE:-"false"}
 TRAEFIK_K8S_OPTS=${TRAEFIK_K8S_OPTS:-""}
-TRAEFIK_ETCD_ENABLE=${TRAEFIK_ETCD_ENABLE:-"false"}
+TRAEFIK_CONSUL_ENABLE=${TRAEFIK_CONSUL_ENABLE:-"false"}
 
 TRAEFIK_ENTRYPOINTS_HTTP="\
   [entryPoints.http]
@@ -61,8 +61,8 @@ if [ "X${TRAEFIK_K8S_ENABLE}" == "Xtrue" ]; then
 fi
 
 TRAEFIK_ACME_STORAGE=""
-if [ "X${TRAEFIK_ETCD_ENABLE}" == "Xtrue" ]; then
-  TRAEFIK_ACME_STORAGE="storage = \"/traefik/acme/account\""
+if [ "X${TRAEFIK_CONSUL_ENABLE}" == "Xtrue" ]; then
+  TRAEFIK_ACME_STORAGE="storage = \"traefik/acme/account\""
 else
   TRAEFIK_ACME_STORAGE="storageFile = \"${SERVICE_HOME}/acme/acme.json\""
 fi
@@ -76,17 +76,17 @@ email = \"${TRAEFIK_ACME_EMAIL}\"
 ${TRAEFIK_ACME_STORAGE}
 onDemand = ${TRAEFIK_ACME_ONDEMAND}
 entryPoint = \"https\"
-
+OnHostRule = true
 "
 fi
 
-TRAEFIK_ETCD_CONFIG=""
-if [ "X${TRAEFIK_ETCD_ENABLE}" == "Xtrue" ]; then
-  TRAEFIK_ETCD_CONFIG="\
-[etcd]
-endpoint = \"etcd:2379\"
+TRAEFIK_CONSUL_CONFIG=""
+if [ "X${TRAEFIK_CONSUL_ENABLE}" == "Xtrue" ]; then
+  TRAEFIK_CONSUL_CONFIG="\
+[consul]
+endpoint = \"consul:8500\"
 watch = true
-prefix = \"/traefik\"
+prefix = \"traefik\"
 
 "
 fi
@@ -102,7 +102,7 @@ ${TRAEFIK_ENTRYPOINTS_OPTS}
 [web]
 address = ":${TRAEFIK_ADMIN_PORT}"
 
-${TRAEFIK_ETCD_CONFIG}
+${TRAEFIK_CONSUL_CONFIG}
 ${TRAEFIK_K8S_OPTS}
 
 [file]
