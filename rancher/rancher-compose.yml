@@ -55,8 +55,14 @@
       default: "test@traefik.io" 
       type: "string"
     - variable: "acme_ondemand"
-      description: "Enable acme ondemand."
-      label: "ACME ondemand:"
+      description: "Enable acme onDemand."
+      label: "ACME onDemand:"
+      required: true
+      default: true 
+      type: "boolean"
+    - variable: "acme_onhostrule"
+      description: "Enable acme onHostRule."
+      label: "ACME onHostRule:"
       required: true
       default: true 
       type: "boolean"
