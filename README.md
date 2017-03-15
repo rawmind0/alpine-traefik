@@ -41,6 +41,7 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_HTTPS_PORT=8443								# https port > 1024 due to run as non privileged user
 - TRAEFIK_ADMIN_PORT=8000								# admin port > 1024 due to run as non privileged user
 - TRAEFIK_LOG_LEVEL="INFO"								# Log level
+- TRAEFIK_DEBUG="false"								# Enable/disable debug mode
 - TRAEFIK_LOG_FILE="/opt/traefik/log/traefik.log"}		# Log file. Redirected to docker stdout.
 - TRAEFIK_ACCESS_FILE="/opt/traefik/log/access.log"}	# Access file. Redirected to docker stdout.
 - TRAEFIK_SSL_PATH="/opt/traefik/certs"					# Path to search .key and .crt files
