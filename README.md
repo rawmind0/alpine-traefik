@@ -13,7 +13,7 @@ docker build -t rawmind/alpine-traefik:<version> .
 
 ## Versions
 
-- `1.2.3` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.2.3/Dockerfile)
+- `1.2.3-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.2.3-1/Dockerfile)
 - `1.2.1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.2.1/Dockerfile)
 - `1.2.0-rc2-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.2.0-rc2-1/Dockerfile)
 - `1.1.2-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.1.2-1/Dockerfile)
@@ -44,6 +44,7 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_ADMIN_PORT=8000								# admin port > 1024 due to run as non privileged user
 - TRAEFIK_LOG_LEVEL="INFO"								# Log level
 - TRAEFIK_DEBUG="false"									# Enable/disable debug mode
+- TRAEFIK_INSECURE_SKIP="false"							# Enable/disable InsecureSkipVerify parameter
 - TRAEFIK_LOG_FILE="/opt/traefik/log/traefik.log"}		# Log file. Redirected to docker stdout.
 - TRAEFIK_ACCESS_FILE="/opt/traefik/log/access.log"}	# Access file. Redirected to docker stdout.
 - TRAEFIK_SSL_PATH="/opt/traefik/certs"					# Path to search .key and .crt files
