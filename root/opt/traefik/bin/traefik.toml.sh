@@ -73,14 +73,14 @@ OnHostRule = ${TRAEFIK_ACME_ONHOSTRULE}
 entryPoint = \"https\"
 "
 
+fi
+    TRAEFIK_DNS_PROVIDER=""
 if [ "X${ACME_ROUTE_53_ENABLED}" == "Xtrue" ]; then
-    TRAEFIK_ACME_CFG=" $TRAEFIK_ACME_CFG
-dnsProvider = \"route53\""
-fi
-
+      TRAEFIK_DNS_PROVIDER="
+dnsProvider = \"route53\"
 "
-
 fi
+
 
 
 cat << EOF > ${SERVICE_HOME}/etc/traefik.toml
@@ -103,4 +103,5 @@ filename = "${SERVICE_HOME}/etc/rules.toml"
 watch = true
 
 ${TRAEFIK_ACME_CFG}
+${TRAEFIK_DNS_PROVIDER}
 EOF
