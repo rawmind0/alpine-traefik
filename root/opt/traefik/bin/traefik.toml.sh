@@ -51,7 +51,7 @@ elif [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xonly" ]; then
 "
     TRAEFIK_ENTRYPOINTS_OPTS=${TRAEFIK_ENTRYPOINTS_HTTP}${TRAEFIK_ENTRYPOINTS_HTTPS}
     TRAEFIK_ENTRYPOINTS='"http", "https"'
-else 
+else
     TRAEFIK_ENTRYPOINTS_OPTS=${TRAEFIK_ENTRYPOINTS_HTTP}
     TRAEFIK_ENTRYPOINTS='"http"'
 fi
@@ -70,10 +70,16 @@ storage = \"${SERVICE_HOME}/acme/acme.json\"
 onDemand = ${TRAEFIK_ACME_ONDEMAND}
 OnHostRule = ${TRAEFIK_ACME_ONHOSTRULE}
 entryPoint = \"https\"
+"
+"
+if [ "X${ACME_ROUTE_53_ENABLED}" == "Xtrue" ]; then
+    dnsProvider = "route53"
+fi
 
 "
 
 fi
+
 
 cat << EOF > ${SERVICE_HOME}/etc/traefik.toml
 # traefik.toml
