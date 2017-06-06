@@ -71,9 +71,10 @@ onDemand = ${TRAEFIK_ACME_ONDEMAND}
 OnHostRule = ${TRAEFIK_ACME_ONHOSTRULE}
 entryPoint = \"https\"
 "
-"
+
 if [ "X${ACME_ROUTE_53_ENABLED}" == "Xtrue" ]; then
-    dnsProvider = "route53"
+    TRAEFIK_ACME_CFG=" $TRAEFIK_ACME_CFG
+dnsProvider = \"route53\""
 fi
 
 "
