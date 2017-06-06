@@ -78,6 +78,7 @@ fi
 if [ "X${ACME_ROUTE_53_ENABLED}" == "Xtrue" ]; then
       TRAEFIK_DNS_PROVIDER="
 dnsProvider = \"route53\"
+acmeLogging = true
 "
 fi
 
