@@ -16,6 +16,7 @@ TRAEFIK_ACME_ONDEMAND=${TRAEFIK_ACME_ONDEMAND:-"true"}
 TRAEFIK_ACME_ONHOSTRULE=${TRAEFIK_ACME_ONHOSTRULE:-"true"}
 TRAEFIK_K8S_ENABLE=${TRAEFIK_K8S_ENABLE:-"false"}
 TRAEFIK_K8S_OPTS=${TRAEFIK_K8S_OPTS:-""}
+ACME_ROUTE_53_ENABLED=${ACME_ROUTE_53_ENABLED:-"false"}
 
 TRAEFIK_ENTRYPOINTS_HTTP="\
   [entryPoints.http]
@@ -51,7 +52,7 @@ elif [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xonly" ]; then
 "
     TRAEFIK_ENTRYPOINTS_OPTS=${TRAEFIK_ENTRYPOINTS_HTTP}${TRAEFIK_ENTRYPOINTS_HTTPS}
     TRAEFIK_ENTRYPOINTS='"http", "https"'
-else 
+else
     TRAEFIK_ENTRYPOINTS_OPTS=${TRAEFIK_ENTRYPOINTS_HTTP}
     TRAEFIK_ENTRYPOINTS='"http"'
 fi
@@ -67,13 +68,20 @@ if [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xtrue" ] || [ "X${TRAEFIK_HTTPS_ENABLE}" == 
 [acme]
 email = \"${TRAEFIK_ACME_EMAIL}\"
 storage = \"${SERVICE_HOME}/acme/acme.json\"
-onDemand = ${TRAEFIK_ACME_ONDEMAND}
 OnHostRule = ${TRAEFIK_ACME_ONHOSTRULE}
 entryPoint = \"https\"
-
 "
 
 fi
+    TRAEFIK_DNS_PROVIDER=""
+if [ "X${ACME_ROUTE_53_ENABLED}" == "Xtrue" ]; then
+      TRAEFIK_DNS_PROVIDER="
+dnsProvider = \"route53\"
+acmeLogging = true
+"
+fi
+
+
 
 cat << EOF > ${SERVICE_HOME}/etc/traefik.toml
 # traefik.toml
@@ -95,4 +103,5 @@ filename = "${SERVICE_HOME}/etc/rules.toml"
 watch = true
 
 ${TRAEFIK_ACME_CFG}
+${TRAEFIK_DNS_PROVIDER}
 EOF
