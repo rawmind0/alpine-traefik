@@ -16,6 +16,11 @@ TRAEFIK_ACME_ONDEMAND=${TRAEFIK_ACME_ONDEMAND:-"true"}
 TRAEFIK_ACME_ONHOSTRULE=${TRAEFIK_ACME_ONHOSTRULE:-"true"}
 TRAEFIK_K8S_ENABLE=${TRAEFIK_K8S_ENABLE:-"false"}
 TRAEFIK_K8S_OPTS=${TRAEFIK_K8S_OPTS:-""}
+TRAEFIK_RANCHER_ENABLE=${TRAEFIK_RANCHER_ENABLE:-"false"}
+TRAEFIK_RANCHER_DOMAIN=${TRAEFIK_RANCHER_DOMAIN:-"rancher.internal"}
+TRAEFIK_RANCHER_EXPOSED=${TRAEFIK_RANCHER_EXPOSED:-"false"}
+TRAEFIK_RANCHER_HEALTHCHEK=${TRAEFIK_RANCHER_HEALTHCHEK:-"false"}
+TRAEFIK_RANCHER_OPTS=${TRAEFIK_RANCHER_OPTS:-""}
 
 TRAEFIK_ENTRYPOINTS_HTTP="\
   [entryPoints.http]
@@ -75,6 +80,21 @@ entryPoint = \"https\"
 
 fi
 
+if [ "X${TRAEFIK_RANCHER_ENABLE}" == "Xtrue" ]; then
+    TRAEFIK_RANCHER_OPTS="\
+[rancher]
+domain = \"${TRAEFIK_RANCHER_DOMAIN}\"
+Watch = true
+RefreshSeconds = 15
+ExposedByDefault = ${TRAEFIK_RANCHER_EXPOSED}
+EnableServiceHealthFilter = ${TRAEFIK_RANCHER_HEALTHCHEK}
+
+Endpoint = \"${RANCHER_URL}\"
+AccessKey = \"${RANCHER_ACCESS_KEY}\"
+SecretKey = \"${RANCHER_SECRET_KEY}\"
+"
+fi
+
 cat << EOF > ${SERVICE_HOME}/etc/traefik.toml
 # traefik.toml
 debug = ${TRAEFIK_DEBUG}
@@ -90,9 +110,13 @@ address = ":${TRAEFIK_ADMIN_PORT}"
 
 ${TRAEFIK_K8S_OPTS}
 
+${TRAEFIK_RANCHER_OPTS}
+
 [file]
 filename = "${SERVICE_HOME}/etc/rules.toml"
 watch = true
 
 ${TRAEFIK_ACME_CFG}
 EOF
+
+

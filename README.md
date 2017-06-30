@@ -13,7 +13,7 @@ docker build -t rawmind/alpine-traefik:<version> .
 
 ## Versions
 
-- `1.3.2` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.2/Dockerfile)
+- `1.3.2-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.2-1/Dockerfile)
 - `1.2.3-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.2.3-1/Dockerfile)
 - `1.2.1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.2.1/Dockerfile)
 - `1.2.0-rc2-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.2.0-rc2-1/Dockerfile)
@@ -53,7 +53,11 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_ACME_EMAIL="test@traefik.io"					# Default email
 - TRAEFIK_ACME_ONDEMAND="true"							# ACME ondemand parameter
 - TRAEFIK_ACME_ONHOSTRULE="true"						# ACME OnHostRule parameter
-- TRAEFIK_K8S_ENABLE="false"							# Enable/disable traefik K8S feature
+- TRAEFIK_K8S_ENABLE="false"							# Enable/disable traefik K8S integration
+- TRAEFIK_RANCHER_ENABLE="false"						# Enable/disable traefik RANCHER integration
+- TRAEFIK_RANCHER_DOMAIN="rancher.internal"				# Rancher domain
+- TRAEFIK_RANCHER_EXPOSED="false"						# Rancher ExposedByDefault
+- TRAEFIK_RANCHER_HEALTHCHEK="false"					# Rancher EnableServiceHealthFilter
 
 ### Custom Configuration
 
@@ -80,7 +84,10 @@ If you enable SSL configuration, you could enable traefik letsencrypt support as
 
 ### Rancher
 
-If you are running it in rancher, you could run [rancher-traefik][rancher-traefik] as a sidekick to get dynamic configuration.
+If you are running it in rancher, you could use in 2 ways:
+
+- Traefik built rancher integration. Add env TRAEFIK_RANCHER_ENABLE=true
+- You could run [rancher-traefik][rancher-traefik] as a sidekick to get dynamic configuration.
 
 
 ## Example
