@@ -9,6 +9,7 @@ traefik:
     io.rancher.scheduler.affinity:host_label: ${host_label}
     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.sidekicks: traefik-conf
+    io.rancher.container.agent.role: environmentAdmin
     io.rancher.container.hostname_override: container_name
   tty: true
   log_opt: {}

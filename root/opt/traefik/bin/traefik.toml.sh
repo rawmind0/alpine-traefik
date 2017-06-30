@@ -89,9 +89,9 @@ RefreshSeconds = 15
 ExposedByDefault = ${TRAEFIK_RANCHER_EXPOSED}
 EnableServiceHealthFilter = ${TRAEFIK_RANCHER_HEALTHCHEK}
 
-Endpoint = \"${RANCHER_URL}\"
-AccessKey = \"${RANCHER_ACCESS_KEY}\"
-SecretKey = \"${RANCHER_SECRET_KEY}\"
+Endpoint = \"${CATTLE_URL}\"
+AccessKey = \"${CATTLE_ACCESS_KEY}\"
+SecretKey = \"${CATTLE_SECRET_KEY}\"
 "
 fi
 
