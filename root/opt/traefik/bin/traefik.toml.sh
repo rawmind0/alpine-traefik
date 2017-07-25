@@ -21,6 +21,7 @@ TRAEFIK_RANCHER_DOMAIN=${TRAEFIK_RANCHER_DOMAIN:-"rancher.internal"}
 TRAEFIK_RANCHER_EXPOSED=${TRAEFIK_RANCHER_EXPOSED:-"false"}
 TRAEFIK_RANCHER_HEALTHCHEK=${TRAEFIK_RANCHER_HEALTHCHEK:-"false"}
 TRAEFIK_RANCHER_OPTS=${TRAEFIK_RANCHER_OPTS:-""}
+TRAEFIK_MIN_TLS_OPTS=${TRAEFIK_MIN_TLS_OPTS:-"VersionTLS12"}
 CATTLE_URL=${CATTLE_URL:-""}
 CATTLE_ACCESS_KEY=${CATTLE_ACCESS_KEY:-""}
 CATTLE_SECRET_KEY=${CATTLE_SECRET_KEY:-""}
@@ -37,7 +38,8 @@ if [ $RC -eq 0 ]; then
     TRAEFIK_ENTRYPOINTS_HTTPS="\
   [entryPoints.https]
   address = \":${TRAEFIK_HTTPS_PORT}\"
-    [entryPoints.https.tls]"
+    [entryPoints.https.tls]
+	 	MinVersion = \"$TRAEFIK_MIN_TLS_OPTS\""
     for i in $filelist; do
         if [ -f "$i.crt" ]; then
             TRAEFIK_ENTRYPOINTS_HTTPS=$TRAEFIK_ENTRYPOINTS_HTTPS"
