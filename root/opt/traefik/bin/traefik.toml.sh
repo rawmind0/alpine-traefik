@@ -39,7 +39,7 @@ if [ $RC -eq 0 ]; then
   [entryPoints.https]
   address = \":${TRAEFIK_HTTPS_PORT}\"
     [entryPoints.https.tls]
-	 	MinVersion = \"$TRAEFIK_MIN_TLS_OPTS\""
+      MinVersion = \"$TRAEFIK_MIN_TLS_OPTS\""
     for i in $filelist; do
         if [ -f "$i.crt" ]; then
             TRAEFIK_ENTRYPOINTS_HTTPS=$TRAEFIK_ENTRYPOINTS_HTTPS"
