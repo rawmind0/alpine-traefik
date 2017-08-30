@@ -11,8 +11,9 @@ This image is the traefik base. It comes from [alpine-monit][alpine-monit].
 docker build -t rawmind/alpine-traefik:<version> .
 ```
 
-## Versions
+## Versionsv
 
+- `1.4.0-rc1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.0-rc1/Dockerfile)
 - `1.3.6` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.6/Dockerfile)
 - `1.3.5` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.5/Dockerfile)
 - `1.3.3` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.3/Dockerfile)
@@ -58,6 +59,8 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_ACME_ONHOSTRULE="true"						# ACME OnHostRule parameter
 - TRAEFIK_K8S_ENABLE="false"							# Enable/disable traefik K8S integration
 - TRAEFIK_RANCHER_ENABLE="false"						# Enable/disable traefik RANCHER integration
+- TRAEFIK_RANCHER_REFRESH=15                            # Rancher poll refresh seconds
+- TRAEFIK_RANCHER_MODE="api"                            # Rancher integration mode. api | metadata
 - TRAEFIK_RANCHER_DOMAIN="rancher.internal"				# Rancher domain
 - TRAEFIK_RANCHER_EXPOSED="false"						# Rancher ExposedByDefault
 - TRAEFIK_RANCHER_HEALTHCHEK="false"					# Rancher EnableServiceHealthFilter

@@ -17,6 +17,8 @@ TRAEFIK_ACME_ONHOSTRULE=${TRAEFIK_ACME_ONHOSTRULE:-"true"}
 TRAEFIK_K8S_ENABLE=${TRAEFIK_K8S_ENABLE:-"false"}
 TRAEFIK_K8S_OPTS=${TRAEFIK_K8S_OPTS:-""}
 TRAEFIK_RANCHER_ENABLE=${TRAEFIK_RANCHER_ENABLE:-"false"}
+TRAEFIK_RANCHER_REFRESH=${TRAEFIK_RANCHER_REFRESH:-15}
+TRAEFIK_RANCHER_MODE=${TRAEFIK_RANCHER_MODE:-"api"}
 TRAEFIK_RANCHER_DOMAIN=${TRAEFIK_RANCHER_DOMAIN:-"rancher.internal"}
 TRAEFIK_RANCHER_EXPOSED=${TRAEFIK_RANCHER_EXPOSED:-"false"}
 TRAEFIK_RANCHER_HEALTHCHEK=${TRAEFIK_RANCHER_HEALTHCHEK:-"false"}
@@ -88,14 +90,24 @@ if [ "X${TRAEFIK_RANCHER_ENABLE}" == "Xtrue" ]; then
 [rancher]
 domain = \"${TRAEFIK_RANCHER_DOMAIN}\"
 Watch = true
-RefreshSeconds = 15
+RefreshSeconds = ${TRAEFIK_RANCHER_REFRESH}
 ExposedByDefault = ${TRAEFIK_RANCHER_EXPOSED}
 EnableServiceHealthFilter = ${TRAEFIK_RANCHER_HEALTHCHEK}
-
+"
+    if [ "${TRAEFIK_RANCHER_MODE}" == "api" ]; then
+        TRAEFIK_RANCHER_OPTS=${TRAEFIK_RANCHER_OPTS}"
+[rancher.api]
 Endpoint = \"${CATTLE_URL}\"
 AccessKey = \"${CATTLE_ACCESS_KEY}\"
 SecretKey = \"${CATTLE_SECRET_KEY}\"
 "
+    elif [ "${TRAEFIK_RANCHER_MODE}" == "metadata" ]; then 
+        TRAEFIK_RANCHER_OPTS=${TRAEFIK_RANCHER_OPTS}"
+[rancher.metadata]
+IntervalPoll = true
+Prefix = \"/2016-07-29\"
+"
+    fi
 fi
 
 cat << EOF > ${SERVICE_HOME}/etc/traefik.toml
