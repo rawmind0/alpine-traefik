@@ -1,6 +1,6 @@
 [![](https://images.microbadger.com/badges/image/rawmind/alpine-traefik.svg)](https://microbadger.com/images/rawmind/alpine-traefik "Get your own image badge on microbadger.com")
 
-alpine-traefik 
+alpine-traefik
 ==============
 
 This image is the traefik base. It comes from [alpine-monit][alpine-monit].
@@ -46,12 +46,17 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_HTTP_PORT=8080								# http port > 1024 due to run as non privileged user
 - TRAEFIK_HTTPS_ENABLE="false"							# "true" enables https and http endpoints. "Only" enables https endpoints and redirect http to https.
 - TRAEFIK_HTTPS_PORT=8443								# https port > 1024 due to run as non privileged user
+- TRAEFIK_ADMIN_ENABLE="false"								# "true" enables web ui and rest api.
 - TRAEFIK_ADMIN_PORT=8000								# admin port > 1024 due to run as non privileged user
 - TRAEFIK_LOG_LEVEL="INFO"								# Log level
 - TRAEFIK_DEBUG="false"									# Enable/disable debug mode
 - TRAEFIK_INSECURE_SKIP="false"							# Enable/disable InsecureSkipVerify parameter
 - TRAEFIK_LOG_FILE="/opt/traefik/log/traefik.log"}		# Log file. Redirected to docker stdout.
 - TRAEFIK_ACCESS_FILE="/opt/traefik/log/access.log"}	# Access file. Redirected to docker stdout.
+- TRAEFIK_ADMIN_READ_ONLY="false"								# "true" limits rest api calls to read only.
+- TRAEFIK_ADMIN_STATISTICS=10                            # Enable more detailed statistics
+- TRAEFIK_ADMIN_BASIC_AUTH_USERS=""                            # To enable basic auth on the webui
+- TRAEFIK_ADMIN_DIGEST_AUTH_USERS=""                            # To enable digest auth on the webui
 - TRAEFIK_SSL_PATH="/opt/traefik/certs"					# Path to search .key and .crt files
 - TRAEFIK_ACME_ENABLE="false"							# Enable/disable traefik ACME feature
 - TRAEFIK_ACME_EMAIL="test@traefik.io"					# Default email
@@ -78,7 +83,7 @@ You could also include FROM rawmind/alpine-traefik at the top of your Dockerfile
 
 ### SSL Configuration
 
-Added SSL configuration. Set TRAEFIK_HTTPS_ENABLE="< true || only >" to enable it. 
+Added SSL configuration. Set TRAEFIK_HTTPS_ENABLE="< true || only >" to enable it.
 
 SSL certificates are located by default in /opt/traefik/certs. You need to provide .key AND .crt files to that directory, in order traefik gets automatically configured with ssl.
 
