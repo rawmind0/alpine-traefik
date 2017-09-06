@@ -19,6 +19,7 @@ traefik:
   - TRAEFIK_HTTP_PORT=${http_port}
   - TRAEFIK_HTTPS_PORT=${https_port}
   - TRAEFIK_HTTPS_ENABLE=${https_enable}
+  - TRAEFIK_ADMIN_ENABLE=${admin_enable}
   - TRAEFIK_ACME_ENABLE=${acme_enable}
   - TRAEFIK_ACME_EMAIL=${acme_email}
   - TRAEFIK_ACME_ONDEMAND=${acme_ondemand}
@@ -39,5 +40,3 @@ traefik-conf:
   net: none
   volumes:
     - /opt/tools
-
-
