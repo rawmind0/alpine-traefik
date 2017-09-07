@@ -97,6 +97,31 @@
       required: true
       default: 10
       type: "int"
+    - variable: "admin_readonly"
+      label: "Read only mode:"
+      description: |
+        Set REST API to read-only mode.
+      default: false
+      required: true
+      type: "boolean"
+    - variable: "admin_statistics"
+      description: "Enable more detailed statistics."
+      label: "Number of recents errors to keep:"
+      required: true
+      default: 10
+      type: "int"
+    - variable: "admin_basic_users"
+      description: "To enable basic auth on the webui."
+      label: "Basic auth users:"
+      type: "multiline"
+      required: false
+      default: ""
+    - variable: "admin_digest_users"
+      description: "To enable digest auth on the webui."
+      label: "Digest auth users:"
+      type: "multiline"
+      required: false
+      default: ""
 traefik:
   retain_ip: true
   health_check:
