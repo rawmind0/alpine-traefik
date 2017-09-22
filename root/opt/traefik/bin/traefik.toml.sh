@@ -32,7 +32,7 @@ TRAEFIK_ENTRYPOINTS_HTTP="\
   address = \":${TRAEFIK_HTTP_PORT}\"
 "
 
-filelist=`ls -1 ${TRAEFIK_SSL_PATH}/*.key | cut -d"." -f1`
+filelist=`ls -1 ${TRAEFIK_SSL_PATH}/*.key | rev | cut -d"." -f2- | rev`
 RC=`echo $?`
 
 if [ $RC -eq 0 ]; then
