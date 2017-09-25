@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
-TRAEFIK_TCP_COMPRESSION=${TRAEFIK_TCP_COMPRESSION:-"true"}
+TRAEFIK_HTTP_COMPRESSION=${TRAEFIK_HTTP_COMPRESSION:-"true"}
+TRAEFIK_HTTPS_COMPRESSION=${TRAEFIK_HTTPS_COMPRESSION:-"true"}
 TRAEFIK_HTTP_PORT=${TRAEFIK_HTTP_PORT:-"8080"}
 TRAEFIK_HTTPS_ENABLE=${TRAEFIK_HTTPS_ENABLE:-"false"}
 TRAEFIK_HTTPS_PORT=${TRAEFIK_HTTPS_PORT:-"8443"}
@@ -31,7 +32,7 @@ CATTLE_SECRET_KEY=${CATTLE_SECRET_KEY:-""}
 TRAEFIK_ENTRYPOINTS_HTTP="\
   [entryPoints.http]
   address = \":${TRAEFIK_HTTP_PORT}\"
-  compress = \":${TRAEFIK_TCP_COMPRESSION}\"
+  compress = \":${TRAEFIK_HTTP_COMPRESSION}\"
 "
 
 filelist=`ls -1 ${TRAEFIK_SSL_PATH}/*.key | cut -d"." -f1`
@@ -41,6 +42,7 @@ if [ $RC -eq 0 ]; then
     TRAEFIK_ENTRYPOINTS_HTTPS="\
   [entryPoints.https]
   address = \":${TRAEFIK_HTTPS_PORT}\"
+  compress = \":${TRAEFIK_HTTPS_COMPRESSION}\"
     [entryPoints.https.tls]"
     for i in $filelist; do
         if [ -f "$i.crt" ]; then
