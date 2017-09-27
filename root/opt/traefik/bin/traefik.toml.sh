@@ -52,9 +52,16 @@ if [ $RC -eq 0 ]; then
     done
 fi
 
-if [ "X${TRAEFIK_REDIRECT_WWW}" == "Xtrue" ]; then
+HTTP_REDIRECT=""
+
+if [ "X${TRAEFIK_REDIRECT_WWW}" == "Xtrue" -o  "X${TRAEFIK_HTTPS_ENABLE}" == "Xonly"  ]; then
     HTTP_REDIRECT="\
     [entryPoints.http.redirect]
+"
+fi
+
+if [ "X${TRAEFIK_REDIRECT_WWW}" == "Xtrue" ]; then
+    HTTP_REDIRECT="$HTTP_REDIRECT\
        regex = \"^http://([a-z0-9\-]{2,}\.[a-z]{2,8})($|/.*)\"
        replacement = \"https://www.$1$2\"
 "
