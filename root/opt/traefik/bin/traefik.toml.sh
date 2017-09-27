@@ -56,41 +56,29 @@ HTTP_REDIRECT=""
 
 if [ "X${TRAEFIK_REDIRECT_WWW}" == "Xtrue" -o  "X${TRAEFIK_HTTPS_ENABLE}" == "Xonly"  ]; then
     HTTP_REDIRECT="\
-    [entryPoints.http.redirect]
-"
+    [entryPoints.http.redirect]"
 fi
 
 if [ "X${TRAEFIK_REDIRECT_WWW}" == "Xtrue" ]; then
     HTTP_REDIRECT="$HTTP_REDIRECT\
        regex = \"^http://([a-z0-9\-]{2,}\.[a-z]{2,8})($|/.*)\"
-       replacement = \"https://www.$1$2\"
-"
+       replacement = \"https://www.$1$2\""
 fi
 
 if [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xtrue" ]; then
     TRAEFIK_ENTRYPOINTS_OPTS=${TRAEFIK_ENTRYPOINTS_HTTP}${TRAEFIK_ENTRYPOINTS_HTTPS}
     TRAEFIK_ENTRYPOINTS='"http", "https"'
 elif [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xonly" ]; then
-    TRAEFIK_ENTRYPOINTS_HTTP=$TRAEFIK_ENTRYPOINTS_HTTP"\
-    $HTTP_REDIRECT
+    TRAEFIK_ENTRYPOINTS_HTTP=$TRAEFIK_ENTRYPOINTS_HTTP"$HTTP_REDIRECT\
        entryPoint = \"https\"
 "
     TRAEFIK_ENTRYPOINTS_OPTS=${TRAEFIK_ENTRYPOINTS_HTTP}${TRAEFIK_ENTRYPOINTS_HTTPS}
     TRAEFIK_ENTRYPOINTS='"http", "https"'
 else
-    TRAEFIK_ENTRYPOINTS_HTTP=$TRAEFIK_ENTRYPOINTS_HTTP"\
-    $HTTP_REDIRECT
+    TRAEFIK_ENTRYPOINTS_HTTP=$TRAEFIK_ENTRYPOINTS_HTTP"$HTTP_REDIRECT\
 "
     TRAEFIK_ENTRYPOINTS_OPTS=${TRAEFIK_ENTRYPOINTS_HTTP}
     TRAEFIK_ENTRYPOINTS='"http"'
-fi
-
-
-if [ ! -z "$TRAEFIK_ENTRYPOINTS_HTTP_REDIRECT" ] ; then
-    TRAEFIK_ENTRYPOINTS_HTTP=$TRAEFIK_ENTRYPOINTS_HTTP"\
-    [entryPoints.http.redirect]
-        $TRAEFIK_ENTRYPOINTS_HTTP_REDIRECT
-"
 fi
 
 if [ "X${TRAEFIK_K8S_ENABLE}" == "Xtrue" ]; then
