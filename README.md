@@ -43,6 +43,7 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_HTTP_PORT=8080								# http port > 1024 due to run as non privileged user
 - TRAEFIK_HTTPS_ENABLE="false"							# "true" enables https and http endpoints. "Only" enables https endpoints and redirect http to https.
 - TRAEFIK_HTTPS_PORT=8443								# https port > 1024 due to run as non privileged user
+- TRAEFIK_REDIRECT_WWW                                  # "true" enables redirecting from DOMAIN.EXT to www.DOMAIN.EXT
 - TRAEFIK_ADMIN_PORT=8000								# admin port > 1024 due to run as non privileged user
 - TRAEFIK_LOG_LEVEL="INFO"								# Log level
 - TRAEFIK_DEBUG="false"									# Enable/disable debug mode
