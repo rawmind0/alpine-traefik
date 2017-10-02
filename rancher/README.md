@@ -11,6 +11,7 @@
 - http_port = 8080  # Port exposed to get access to the published services.
 - https_port = 8443  # Port exposed to get secured access to the published services.
 - admin_enable = false  # Enable web ui.
+- compress_enable = true    # Enable traefik compression
 - admin_port = 8000  # Port exposed to get admin access to the traefik service.
 - https_enable = <false | true | only>
   - false: Enable http enpoints and disable https ones.
