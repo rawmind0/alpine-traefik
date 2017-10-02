@@ -14,7 +14,7 @@ docker build -t rawmind/alpine-traefik:<version> .
 ## Versionsv
 
 - `1.4.0-rc3` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.0-rc3/Dockerfile)
-- `1.3.8` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.8/Dockerfile)
+- `1.3.8-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.8-1/Dockerfile)
 - `1.3.6` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.6/Dockerfile)
 - `1.3.5` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.5/Dockerfile)
 - `1.3.3` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.3/Dockerfile)
@@ -45,8 +45,10 @@ Besides, you can customize the configuration in several ways:
 Traefic is installed with the default configuration and some parameters can be overrided with env variables:
 
 - TRAEFIK_HTTP_PORT=8080								# http port > 1024 due to run as non privileged user
+- TRAEFIK_HTTP_COMPRESSION="true"                       # Enable http compression
 - TRAEFIK_HTTPS_ENABLE="false"							# "true" enables https and http endpoints. "Only" enables https endpoints and redirect http to https.
 - TRAEFIK_HTTPS_PORT=8443								# https port > 1024 due to run as non privileged user
+- TRAEFIK_HTTPS_COMPRESSION="true"                       # Enable https compression
 - TRAEFIK_ADMIN_PORT=8000								# admin port > 1024 due to run as non privileged user
 - TRAEFIK_LOG_LEVEL="INFO"								# Log level
 - TRAEFIK_DEBUG="false"									# Enable/disable debug mode
