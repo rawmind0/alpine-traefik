@@ -24,6 +24,11 @@ traefik:
   - TRAEFIK_ACME_ONDEMAND=${acme_ondemand}
   - TRAEFIK_ACME_ONHOSTRULE=${acme_onhostrule}
   - TRAEFIK_INSECURE_SKIP=${insecure_skip}
+  - TRAEFIK_ADMIN_ENABLE=${admin_enable}
+  - TRAEFIK_ADMIN_READ_ONLY=${admin_readonly}
+  - TRAEFIK_ADMIN_STATISTICS=${admin_statistics}
+  - TRAEFIK_ADMIN_BASIC_AUTH_USERS=${admin_basic_users}
+  - TRAEFIK_ADMIN_DIGEST_AUTH_USERS=${admin_digest_users}
   volumes_from:
   - traefik-conf
 traefik-conf:
@@ -39,5 +44,3 @@ traefik-conf:
   net: none
   volumes:
     - /opt/tools
-
-
