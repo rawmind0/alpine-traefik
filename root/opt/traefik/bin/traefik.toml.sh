@@ -37,7 +37,7 @@ CATTLE_SECRET_KEY=${CATTLE_SECRET_KEY:-""}
 TRAEFIK_ENTRYPOINTS_HTTP="\
   [entryPoints.http]
   address = \":${TRAEFIK_HTTP_PORT}\"
-  compress = \":${TRAEFIK_HTTP_COMPRESSION}\"
+  compress = ${TRAEFIK_HTTP_COMPRESSION}
 "
 
 filelist=`ls -1 ${TRAEFIK_SSL_PATH}/*.key | rev | cut -d"." -f2- | rev`
@@ -47,7 +47,7 @@ if [ $RC -eq 0 ]; then
     TRAEFIK_ENTRYPOINTS_HTTPS="\
   [entryPoints.https]
   address = \":${TRAEFIK_HTTPS_PORT}\"
-  compress = \":${TRAEFIK_HTTPS_COMPRESSION}\"
+  compress = ${TRAEFIK_HTTPS_COMPRESSION}
     [entryPoints.https.tls]"
     for i in $filelist; do
         if [ -f "$i.crt" ]; then
