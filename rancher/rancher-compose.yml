@@ -80,6 +80,12 @@
       required: true
       default: true
       type: "boolean"
+    - variable: "acme_caserver"
+      description: "ACME caServer to use."
+      label: "ACME caServer:"
+      required: true
+      default: "https://acme-v01.api.letsencrypt.org/directory"
+      type: "string"
     - variable: "ssl_key"
       description: "SSL key to secure the service. *Required if you enable https"
       label: "SSL key"
