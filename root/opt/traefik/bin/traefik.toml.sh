@@ -113,7 +113,6 @@ SecretKey = \"${CATTLE_SECRET_KEY}\"
     elif [ "${TRAEFIK_RANCHER_MODE}" == "metadata" ]; then
         TRAEFIK_RANCHER_OPTS=${TRAEFIK_RANCHER_OPTS}"
 [rancher.metadata]
-IntervalPoll = true
 Prefix = \"/2016-07-29\"
 "
     fi
