@@ -71,7 +71,7 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_RANCHER_MODE="api"                            # Rancher integration mode. api | metadata
 - TRAEFIK_RANCHER_DOMAIN="rancher.internal"				# Rancher domain
 - TRAEFIK_RANCHER_EXPOSED="false"						# Rancher ExposedByDefault
-- TRAEFIK_RANCHER_HEALTHCHEK="false"					# Rancher EnableServiceHealthFilter
+- TRAEFIK_RANCHER_HEALTHCHECK="true"					# Rancher EnableServiceHealthFilter
 - CATTLE_URL=""											# Rancher API url
 - CATTLE_ACCESS_KEY=""									# Rancher access key
 - CATTLE_SECRET_KEY=""									# Rancher secret key
