@@ -27,8 +27,8 @@
 - refresh_interval = 10s  # Interval to refresh traefik rules.toml from rancher-metadata.
 - admin_readonly = false # Set REST API to read-only mode.
 - admin_statistics = 10 # Enable more detailed statistics, extend recent errors number.
-- admin_basic_users = "" # Paste basic users created with htpasswd, one user per line.
-- admin_digest_users = "" # Paste digest users created with htdigest, one user per line.
+- admin_auth_method = "basic" # Selec auth method, basic or digest.
+- admin_users = "" # Paste basic or digest users created with htdigest, one user per line.
 - prometheus_enable = false # Enable prometheus statistics
 
 ### Service configuration labels:
