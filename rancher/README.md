@@ -21,6 +21,7 @@
 - acme_email = "test@traefik.io" 	# acme user email
 - acme_ondemand = true 				# acme ondemand parameter.
 - acme_onhostrule = true 			# acme onHostRule parameter.
+- acme_caserver = "https://acme-v01.api.letsencrypt.org/directory" 			# acme caServer parameter.
 - ssl_key # Paste your ssl key. *Required if you enable https
 - ssl_crt # Paste your ssl crt. *Required if you enable https
 - refresh_interval = 10s  # Interval to refresh traefik rules.toml from rancher-metadata.

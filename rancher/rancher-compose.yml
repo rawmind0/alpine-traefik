@@ -1,6 +1,6 @@
 .catalog:
   name: traefik
-  version: 1.4.0-rc3-rancher1
+  version: 1.3.8-rancher1
   description: |
     (Experimental) Traefik load balancer.
   minimum_rancher_version: v0.59.0
@@ -80,6 +80,12 @@
       required: true
       default: true
       type: "boolean"
+    - variable: "acme_caserver"
+      description: "ACME caServer to use."
+      label: "ACME caServer:"
+      required: true
+      default: "https://acme-v01.api.letsencrypt.org/directory"
+      type: "string"
     - variable: "ssl_key"
       description: "SSL key to secure the service. *Required if you enable https"
       label: "SSL key"
