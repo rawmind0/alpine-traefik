@@ -123,15 +123,18 @@
       required: true
       default: 10
       type: "int"
-    - variable: "admin_basic_users"
-      description: "To enable basic auth on the webui."
-      label: "Basic auth users:"
-      type: "multiline"
-      required: false
-      default: ""
-    - variable: "admin_digest_users"
-      description: "To enable digest auth on the webui."
-      label: "Digest auth users:"
+    - variable: "admin_auth_method"
+      description: "Set admin auth method on the webui."
+      label: "Admin auth method:"
+      required: true
+      default: "basic"
+      type: enum
+      options: # List of options if using type of `enum`
+        - basic
+        - digest
+    - variable: "admin_users"
+      description: "Admin auth user list on the webui. basic or digest format."
+      label: "Admin users:"
       type: "multiline"
       required: false
       default: ""
