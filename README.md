@@ -76,6 +76,7 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_RANCHER_INTERVALPOLL="false"      # Rancher enable/disable intervalpoll
 - TRAEFIK_RANCHER_PREFIX="/2016-07-29"      # Rancher metadata prefix
 - TRAEFIK_PROMETHEUS_ENABLE="true"			# Enable Prometheus to pull statistics
+- TRAEFIK_PROMETHEUS_BUCKETS="[0.1,0.3,1.2,5.0]" 	# To define Prometheus buckets
 - CATTLE_URL=""											# Rancher API url
 - CATTLE_ACCESS_KEY=""									# Rancher access key
 - CATTLE_SECRET_KEY=""									# Rancher secret key

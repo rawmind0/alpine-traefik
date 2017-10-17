@@ -33,6 +33,7 @@ traefik:
   - TRAEFIK_ADMIN_AUTH_METHOD=${admin_auth_method}
   - TRAEFIK_ADMIN_AUTH_USERS=${admin_users}
   - TRAEFIK_PROMETHEUS_ENABLE=${prometheus_enable}
+  - TRAEFIK_PROMETHEUS_BUCKETS=${prometheus_buckets}
   volumes_from:
   - traefik-conf
 traefik-conf:
