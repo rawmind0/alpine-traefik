@@ -13,7 +13,7 @@ docker build -t rawmind/alpine-traefik:<version> .
 
 ## Versionsv
 
-- `1.4.0-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.0-1/Dockerfile)
+- `1.4.0-2` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.0-2/Dockerfile)
 - `1.3.8-4` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.8-4/Dockerfile)
 - `1.3.6` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.6/Dockerfile)
 - `1.3.5` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.5/Dockerfile)
@@ -73,6 +73,8 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_RANCHER_DOMAIN="rancher.internal"				# Rancher domain
 - TRAEFIK_RANCHER_EXPOSED="false"						# Rancher ExposedByDefault
 - TRAEFIK_RANCHER_HEALTHCHECK="true"					# Rancher EnableServiceHealthFilter
+- TRAEFIK_RANCHER_INTERVALPOLL="false"      # Rancher enable/disable intervalpoll
+- TRAEFIK_RANCHER_PREFIX="/2016-07-29"      # Rancher metadata prefix
 - TRAEFIK_PROMETHEUS_ENABLE="true"			# Enable Prometheus to pull statistics
 - TRAEFIK_PROMETHEUS_BUCKETS="[0.1,0.3,1.2,5.0]" 	# To define Prometheus buckets
 - CATTLE_URL=""											# Rancher API url
