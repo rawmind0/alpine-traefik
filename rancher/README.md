@@ -29,6 +29,7 @@
 - admin_statistics = 10 # Enable more detailed statistics, extend recent errors number.
 - admin_basic_users = "" # Paste basic users created with htpasswd, one user per line.
 - admin_digest_users = "" # Paste digest users created with htdigest, one user per line.
+- prometheus_enable = false # Enable prometheus statistics
 
 ### Service configuration labels:
 
