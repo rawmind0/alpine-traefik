@@ -135,6 +135,12 @@
       type: "multiline"
       required: false
       default: ""
+    - variable: "prometheus_enable"
+      description: "To enable statistics to be pulled by Prometheus."
+      label: "Enable Prometheus"
+      default: true
+      required: false
+      type: "boolean"
 traefik:
   retain_ip: true
   health_check:
