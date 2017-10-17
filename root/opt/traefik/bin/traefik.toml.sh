@@ -152,13 +152,13 @@ ReadOnly = ${TRAEFIK_ADMIN_READ_ONLY}
   usersFile = \"${SERVICE_HOME}/.htdigest\"
 "
     fi
+fi
 
-    if [ "X${TRAEFIK_PROMETHEUS_ENABLE}" == "Xtrue" ]; then
-        TRAEFIK_PROMETHEUS_OPTS="\
+if [ "X${TRAEFIK_PROMETHEUS_ENABLE}" == "Xtrue" ]; then
+    TRAEFIK_PROMETHEUS_OPTS="\
 [web.metrics.prometheus]
 buckets=${TRAEFIK_PROMETHEUS_BUCKETS}
 "
-    fi
 fi
 
 cat << EOF > ${SERVICE_HOME}/etc/traefik.toml
