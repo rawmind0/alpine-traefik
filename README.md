@@ -66,6 +66,7 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_ACME_ONDEMAND="true"							# ACME ondemand parameter
 - TRAEFIK_ACME_ONHOSTRULE="true"						# ACME OnHostRule parameter
 - TRAEFIK_ACME_CASERVER="https://acme-v01.api.letsencrypt.org/directory"						# ACME caServer parameter
+- TRAEFIK_FILE_ENABLE="true"							# Enable/disable file backend
 - TRAEFIK_K8S_ENABLE="false"							# Enable/disable traefik K8S integration
 - TRAEFIK_RANCHER_ENABLE="false"						# Enable/disable traefik RANCHER integration
 - TRAEFIK_RANCHER_REFRESH=15                            # Rancher poll refresh seconds
