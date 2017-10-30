@@ -37,6 +37,7 @@ TRAEFIK_RANCHER_INTERVALPOLL=${TRAEFIK_RANCHER_INTERVALPOLL:-"false"}
 TRAEFIK_RANCHER_OPTS=${TRAEFIK_RANCHER_OPTS:-""}
 TRAEFIK_RANCHER_PREFIX=${TRAEFIK_RANCHER_PREFIX:-"/2016-07-29"}
 TRAEFIK_FILE_ENABLE=${TRAEFIK_FILE_ENABLE:="true"}
+TRAEFIK_FILE_OPTS=${TRAEFIK_FILE_OPTS:-""}
 TRAEFIK_WEB=${TRAEFIK_WEB:-""}
 CATTLE_URL=${CATTLE_URL:-""}
 CATTLE_ACCESS_KEY=${CATTLE_ACCESS_KEY:-""}
@@ -130,8 +131,7 @@ fi
 
 if [ "X${TRAEFIK_ADMIN_ENABLE}" == "Xtrue" ] || [ "X${TRAEFIK_PROMETHEUS_ENABLE}" == "Xtrue" ]; then
     TRAEFIK_WEB="\
-[web]
-"
+[web]"
 fi
 
 if [ "X${TRAEFIK_ADMIN_ENABLE}" == "Xtrue" ]; then
@@ -139,14 +139,14 @@ if [ "X${TRAEFIK_ADMIN_ENABLE}" == "Xtrue" ]; then
 address = \":${TRAEFIK_ADMIN_PORT}\"
 ReadOnly = ${TRAEFIK_ADMIN_READ_ONLY}
 [web.statistics]
-  RecentErrors = ${TRAEFIK_ADMIN_STATISTICS}
+RecentErrors = ${TRAEFIK_ADMIN_STATISTICS}
 "
 
     if [ "${TRAEFIK_ADMIN_AUTH_USERS}" != "" ]; then
         echo ${TRAEFIK_ADMIN_AUTH_USERS} > "${SERVICE_HOME}/.htpasswd"
         TRAEFIK_ADMIN_CFG=${TRAEFIK_ADMIN_CFG}"
 [web.auth.${TRAEFIK_ADMIN_AUTH_METHOD}]
-  usersFile = \"${SERVICE_HOME}/.htpasswd\"
+usersFile = \"${SERVICE_HOME}/.htpasswd\"
 "
     fi
 fi
@@ -158,7 +158,7 @@ buckets=${TRAEFIK_PROMETHEUS_BUCKETS}
 "
 fi
 
-if [ "X${TRAEFIK_FILE_ENABLE}" -= "Xtrue" ]; then
+if [ "X${TRAEFIK_FILE_ENABLE}" == "Xtrue" ]; then
     TRAEFIK_FILE_OPTS="\
 [file]
 filename = "${SERVICE_HOME}/etc/rules.toml"
@@ -174,20 +174,14 @@ traefikLogsFile = "${TRAEFIK_LOG_FILE}"
 accessLogsFile = "${TRAEFIK_ACCESS_FILE}"
 InsecureSkipVerify = ${TRAEFIK_INSECURE_SKIP}
 defaultEntryPoints = [${TRAEFIK_ENTRYPOINTS}]
+
 [entryPoints]
 ${TRAEFIK_ENTRYPOINTS_OPTS}
-
 ${TRAEFIK_WEB}
-
 ${TRAEFIK_ADMIN_CFG}
-
 ${TRAEFIK_PROMETHEUS_OPTS}
-
-${TRAEFIK_K8S_OPTS}
-
 ${TRAEFIK_RANCHER_OPTS}
-
-$(TRAEFIK_FILE_OPTS)
-
+${TRAEFIK_FILE_OPTS}
 ${TRAEFIK_ACME_CFG}
+${TRAEFIK_K8S_OPTS}
 EOF
