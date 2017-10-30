@@ -95,7 +95,7 @@ email = \"${TRAEFIK_ACME_EMAIL}\"
 storage = \"${SERVICE_HOME}/acme/acme.json\"
 onDemand = ${TRAEFIK_ACME_ONDEMAND}
 OnHostRule = ${TRAEFIK_ACME_ONHOSTRULE}
-caServer = ${TRAEFIK_ACME_CASERVER}
+caServer = \"${TRAEFIK_ACME_CASERVER}\"
 entryPoint = \"https\"
 
 "
