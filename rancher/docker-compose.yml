@@ -13,7 +13,7 @@ traefik:
     io.rancher.container.hostname_override: container_name
   tty: true
   log_opt: {}
-  image: rawmind/alpine-traefik:1.4.1-1
+  image: rawmind/alpine-traefik:1.4.0-6
   environment:
   - CONF_INTERVAL=${refresh_interval}
   - TRAEFIK_HTTP_PORT=${http_port}
