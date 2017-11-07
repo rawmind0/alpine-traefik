@@ -1,6 +1,6 @@
 [![](https://images.microbadger.com/badges/image/rawmind/alpine-traefik.svg)](https://microbadger.com/images/rawmind/alpine-traefik "Get your own image badge on microbadger.com")
 
-alpine-traefik 
+alpine-traefik
 ==============
 
 This image is the traefik base. It comes from [alpine-monit][alpine-monit].
@@ -13,6 +13,11 @@ docker build -t rawmind/alpine-traefik:<version> .
 
 ## Versions
 
+- `1.4.1-2` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.1-2/Dockerfile)
+- `1.4.0-6` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.0-6/Dockerfile)
+- `1.3.8-4` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.8-4/Dockerfile)
+- `1.3.6` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.6/Dockerfile)
+- `1.3.5` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.5/Dockerfile)
 - `1.3.3` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.3/Dockerfile)
 - `1.3.2-2` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.3.2-2/Dockerfile)
 - `1.2.3-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.2.3-1/Dockerfile)
@@ -41,26 +46,41 @@ Besides, you can customize the configuration in several ways:
 Traefic is installed with the default configuration and some parameters can be overrided with env variables:
 
 - TRAEFIK_HTTP_PORT=8080								# http port > 1024 due to run as non privileged user
+- TRAEFIK_HTTP_COMPRESSION="true"                       # Enable http compression
 - TRAEFIK_HTTPS_ENABLE="false"							# "true" enables https and http endpoints. "Only" enables https endpoints and redirect http to https.
 - TRAEFIK_HTTPS_PORT=8443								# https port > 1024 due to run as non privileged user
-- TRAEFIK_REDIRECT_WWW                                  # "true" enables redirecting from DOMAIN.EXT to www.DOMAIN.EXT
+- TRAEFIK_ADMIN_ENABLE="false"								# "true" enables web ui and rest api.
+- TRAEFIK_HTTPS_COMPRESSION="true"                       # Enable https compression
 - TRAEFIK_ADMIN_PORT=8000								# admin port > 1024 due to run as non privileged user
 - TRAEFIK_LOG_LEVEL="INFO"								# Log level
 - TRAEFIK_DEBUG="false"									# Enable/disable debug mode
 - TRAEFIK_INSECURE_SKIP="false"							# Enable/disable InsecureSkipVerify parameter
 - TRAEFIK_LOG_FILE="/opt/traefik/log/traefik.log"}		# Log file. Redirected to docker stdout.
 - TRAEFIK_ACCESS_FILE="/opt/traefik/log/access.log"}	# Access file. Redirected to docker stdout.
+- TRAEFIK_ADMIN_READ_ONLY="false"								# "true" limits rest api calls to read only.
+- TRAEFIK_ADMIN_STATISTICS=10                            # Enable more detailed statistics
+- TRAEFIK_ADMIN_BASIC_AUTH_USERS=""                            # To enable basic auth on the webui
+- TRAEFIK_ADMIN_DIGEST_AUTH_USERS=""                            # To enable digest auth on the webui
 - TRAEFIK_SSL_PATH="/opt/traefik/certs"					# Path to search .key and .crt files
 - TRAEFIK_MIN_TLS="VersionTLS12"					# Minimal allowed tls version to accept connections from
 - TRAEFIK_ACME_ENABLE="false"							# Enable/disable traefik ACME feature
 - TRAEFIK_ACME_EMAIL="test@traefik.io"					# Default email
 - TRAEFIK_ACME_ONDEMAND="true"							# ACME ondemand parameter
 - TRAEFIK_ACME_ONHOSTRULE="true"						# ACME OnHostRule parameter
+- TRAEFIK_ACME_CASERVER="https://acme-v01.api.letsencrypt.org/directory"						# ACME caServer parameter
+- TRAEFIK_FILE_ENABLE="true"							# Enable/disable file backend
+- TRAEFIK_FILE_NAME="${SERVICE_HOME}/etc/rules.toml"    # File name for file backend
 - TRAEFIK_K8S_ENABLE="false"							# Enable/disable traefik K8S integration
 - TRAEFIK_RANCHER_ENABLE="false"						# Enable/disable traefik RANCHER integration
+- TRAEFIK_RANCHER_REFRESH=15                            # Rancher poll refresh seconds
+- TRAEFIK_RANCHER_MODE="api"                            # Rancher integration mode. api | metadata
 - TRAEFIK_RANCHER_DOMAIN="rancher.internal"				# Rancher domain
 - TRAEFIK_RANCHER_EXPOSED="false"						# Rancher ExposedByDefault
-- TRAEFIK_RANCHER_HEALTHCHEK="false"					# Rancher EnableServiceHealthFilter
+- TRAEFIK_RANCHER_HEALTHCHECK="true"					# Rancher EnableServiceHealthFilter
+- TRAEFIK_RANCHER_INTERVALPOLL="false"      # Rancher enable/disable intervalpoll
+- TRAEFIK_RANCHER_PREFIX="/2016-07-29"      # Rancher metadata prefix
+- TRAEFIK_PROMETHEUS_ENABLE="true"			# Enable Prometheus to pull statistics
+- TRAEFIK_PROMETHEUS_BUCKETS="[0.1,0.3,1.2,5.0]" 	# To define Prometheus buckets
 - CATTLE_URL=""											# Rancher API url
 - CATTLE_ACCESS_KEY=""									# Rancher access key
 - CATTLE_SECRET_KEY=""									# Rancher secret key
@@ -75,7 +95,7 @@ You could also include FROM rawmind/alpine-traefik at the top of your Dockerfile
 
 ### SSL Configuration
 
-Added SSL configuration. Set TRAEFIK_HTTPS_ENABLE="< true || only >" to enable it. 
+Added SSL configuration. Set TRAEFIK_HTTPS_ENABLE="< true || only >" to enable it.
 
 SSL certificates are located by default in /opt/traefik/certs. You need to provide .key AND .crt files to that directory, in order traefik gets automatically configured with ssl.
 

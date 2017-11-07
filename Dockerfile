@@ -1,16 +1,16 @@
-FROM rawmind/alpine-monit:0.5.20-2
+FROM rawmind/alpine-monit:5.23
 MAINTAINER Raul Sanchez <rawmind@gmail.com>
 
 # Set environment
 ENV SERVICE_NAME=traefik \
     SERVICE_HOME=/opt/traefik \
-    SERVICE_VERSION=v1.4.1 \
+    SERVICE_VERSION=1.4.1 \
     SERVICE_USER=traefik \
     SERVICE_UID=10001 \
     SERVICE_GROUP=traefik \
     SERVICE_GID=10001 \
     SERVICE_URL=https://github.com/containous/traefik/releases/download
-ENV SERVICE_RELEASE=${SERVICE_URL}/${SERVICE_VERSION}/traefik_linux-amd64 \
+ENV SERVICE_RELEASE=${SERVICE_URL}/v${SERVICE_VERSION}/traefik_linux-amd64 \
     PATH=${PATH}:${SERVICE_HOME}/bin
 
 # Download and install traefik
