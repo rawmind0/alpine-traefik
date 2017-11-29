@@ -13,7 +13,7 @@ docker build -t rawmind/alpine-traefik:<version> .
 
 ## Versions
 
-- `1.4.4-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.4-0/Dockerfile)
+- `1.4.4-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.4-1/Dockerfile)
 - `1.4.3-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.3-0/Dockerfile)
 - `1.4.2-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.2-0/Dockerfile)
 - `1.4.1-2` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.1-2/Dockerfile)
@@ -55,6 +55,7 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_ADMIN_ENABLE="false"								# "true" enables web ui and rest api.
 - TRAEFIK_HTTPS_COMPRESSION="true"                       # Enable https compression
 - TRAEFIK_ADMIN_PORT=8000								# admin port > 1024 due to run as non privileged user
+- TRAEFIK_CONSTRAINTS=""                                # Traefik constraint param. Format: \"tag==api\"
 - TRAEFIK_LOG_LEVEL="INFO"								# Log level
 - TRAEFIK_DEBUG="false"									# Enable/disable debug mode
 - TRAEFIK_INSECURE_SKIP="false"							# Enable/disable InsecureSkipVerify parameter

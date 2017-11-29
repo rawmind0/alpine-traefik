@@ -13,6 +13,13 @@
       required: true
       default: "traefik_lb=true"
       type: "string"
+    - variable: "constraints"
+      description: |
+        Traefik constraints for rancher provider. Eg: \"tag==api\"
+      label: "Constraints:"
+      required: false
+      default: ""
+      type: "string"
     - variable: "http_port"
       description: "Traefik http public port to listen."
       label: "Http port:"

@@ -8,6 +8,7 @@
 ### Config:
 
 - host_label = "traefik_lb=true" # Host label where to run traefik service.
+- constraints = ""  # Traefik constraints for rancher provider.
 - http_port = 8080  # Port exposed to get access to the published services.
 - https_port = 8443  # Port exposed to get secured access to the published services.
 - admin_enable = false  # Enable web ui.
