@@ -66,6 +66,7 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_ADMIN_BASIC_AUTH_USERS=""                            # To enable basic auth on the webui
 - TRAEFIK_ADMIN_DIGEST_AUTH_USERS=""                            # To enable digest auth on the webui
 - TRAEFIK_SSL_PATH="/opt/traefik/certs"					# Path to search .key and .crt files
+- TRAEFIK_MIN_TLS="VersionTLS12"					# Minimal allowed tls version to accept connections from
 - TRAEFIK_ACME_ENABLE="false"							# Enable/disable traefik ACME feature
 - TRAEFIK_ACME_EMAIL="test@traefik.io"					# Default email
 - TRAEFIK_ACME_ONDEMAND="true"							# ACME ondemand parameter
@@ -105,6 +106,8 @@ SSL certificates are located by default in /opt/traefik/certs. You need to provi
 If you put more that one key/crt files in the certs directory, traefik gets sni enabled and configured. You also could map you cert storage volume to traefik and mount it in $TRAEFIK_SSL_PATH value.
 
 You could also include FROM rawmind/alpine-traefik at the top of your Dockerfile, and add your custom ssl files.
+
+If you need to let legacy tls versions connect to traefik then setting TRAEFIK_MIN_TLS will set `minVersion` on the https Entrypoint. See the traefik documentation for allowed values. Default is VersionTLS12.
 
 ### Letsencrypt Configuration
 
