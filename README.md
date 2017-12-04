@@ -13,7 +13,7 @@ docker build -t rawmind/alpine-traefik:<version> .
 
 ## Versions
 
-- `1.4.4-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.4-1/Dockerfile)
+- `1.4.4-2` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.4-2/Dockerfile)
 - `1.4.3-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.3-0/Dockerfile)
 - `1.4.2-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.2-0/Dockerfile)
 - `1.4.1-2` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.1-2/Dockerfile)
@@ -66,6 +66,10 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_ADMIN_BASIC_AUTH_USERS=""                            # To enable basic auth on the webui
 - TRAEFIK_ADMIN_DIGEST_AUTH_USERS=""                            # To enable digest auth on the webui
 - TRAEFIK_SSL_PATH="/opt/traefik/certs"					# Path to search .key and .crt files
+- TRAEFIK_SSL_KEY=<DEMO KEY>                            # ssl key 
+- TRAEFIK_SSL_KEY_FILE=${TRAEFIK_SSL_PATH}"/"${SERVICE_NAME}".key" # Default key file.
+- TRAEFIK_SSL_CRT=<DEMO CRT>                            # ssl cert 
+- TRAEFIK_SSL_CRT_FILE=${TRAEFIK_SSL_PATH}"/"${SERVICE_NAME}".crt"} # Default crt file.
 - TRAEFIK_ACME_ENABLE="false"							# Enable/disable traefik ACME feature
 - TRAEFIK_ACME_EMAIL="test@traefik.io"					# Default email
 - TRAEFIK_ACME_ONDEMAND="true"							# ACME ondemand parameter

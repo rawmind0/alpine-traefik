@@ -13,7 +13,7 @@ traefik:
     io.rancher.container.hostname_override: container_name
   tty: true
   log_opt: {}
-  image: rawmind/alpine-traefik:1.4.4-1
+  image: rawmind/alpine-traefik:1.4.4-2
   environment:
   - CONF_INTERVAL=${refresh_interval}
   - TRAEFIK_HTTP_PORT=${http_port}
@@ -35,6 +35,8 @@ traefik:
   - TRAEFIK_ADMIN_AUTH_USERS=${admin_users}
   - TRAEFIK_PROMETHEUS_ENABLE=${prometheus_enable}
   - TRAEFIK_PROMETHEUS_BUCKETS=${prometheus_buckets}
+  - TRAEFIK_SSL_KEY=${ssl_key}
+  - TRAEFIK_SSL_CRT=${ssl_crt}
   volumes_from:
   - traefik-conf
 traefik-conf:
