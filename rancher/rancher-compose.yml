@@ -166,9 +166,4 @@ traefik:
     request_line: 'GET /ping HTTP/1.0'
     healthy_threshold: 2
     response_timeout: 5000
-  metadata:
-    traefik:
-      ssl_key: |
-        ${ssl_key}
-      ssl_crt: |
-        ${ssl_crt}
+

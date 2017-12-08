@@ -165,6 +165,12 @@ if [ $RC -eq 0 ]; then
     done
 fi
 
+if [ "X${TRAEFIK_FILE_ENABLE}" == "Xtrue" ]; then
+  if [ ! -f ${TRAEFIK_FILE_NAME} ]; then
+    touch ${TRAEFIK_FILE_NAME}
+  fi
+fi
+
 if [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xtrue" ]; then
     TRAEFIK_ENTRYPOINTS_OPTS=${TRAEFIK_ENTRYPOINTS_HTTP}${TRAEFIK_ENTRYPOINTS_HTTPS}
     TRAEFIK_ENTRYPOINTS='"http", "https"'
