@@ -246,6 +246,8 @@ if [ "X${TRAEFIK_ADMIN_ENABLE}" == "Xtrue" ]; then
     TRAEFIK_ADMIN_CFG="\
 address = \":${TRAEFIK_ADMIN_PORT}\"
 ReadOnly = ${TRAEFIK_ADMIN_READ_ONLY}
+certFile = \"${TRAEFIK_SSL_CRT_FILE}\"
+keyFile = \"${TRAEFIK_SSL_KEY_FILE}\"
 [web.statistics]
 RecentErrors = ${TRAEFIK_ADMIN_STATISTICS}
 "
