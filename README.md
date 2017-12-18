@@ -13,7 +13,7 @@ docker build -t rawmind/alpine-traefik:<version> .
 
 ## Versions
 
-- `1.4.5-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.5-0/Dockerfile)
+- `1.4.5-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.5-1/Dockerfile)
 - `1.4.4-4` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.4-4/Dockerfile)
 - `1.4.3-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.3-0/Dockerfile)
 - `1.4.2-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.2-0/Dockerfile)
@@ -53,6 +53,7 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_HTTP_COMPRESSION="true"                       # Enable http compression
 - TRAEFIK_HTTPS_ENABLE="false"							# "true" enables https and http endpoints. "Only" enables https endpoints and redirect http to https.
 - TRAEFIK_HTTPS_PORT=8443								# https port > 1024 due to run as non privileged user
+- TRAEFIK_HTTPS_MIN_TLS="VersionTLS12"					# Minimal allowed tls version to accept connections from
 - TRAEFIK_ADMIN_ENABLE="false"								# "true" enables web ui and rest api.
 - TRAEFIK_HTTPS_COMPRESSION="true"                       # Enable https compression
 - TRAEFIK_ADMIN_PORT=8000								# admin port > 1024 due to run as non privileged user
@@ -110,6 +111,8 @@ SSL certificates are located by default in /opt/traefik/certs. You need to provi
 If you put more that one key/crt files in the certs directory, traefik gets sni enabled and configured. You also could map you cert storage volume to traefik and mount it in $TRAEFIK_SSL_PATH value.
 
 You could also include FROM rawmind/alpine-traefik at the top of your Dockerfile, and add your custom ssl files.
+
+If you need to let legacy tls versions connect to traefik then setting `TRAEFIK_HTTPS_MIN_TLS` will set `minVersion` on the https Entrypoint. See the traefik documentation for allowed values. Default is `VersionTLS12`.
 
 ### Letsencrypt Configuration
 
