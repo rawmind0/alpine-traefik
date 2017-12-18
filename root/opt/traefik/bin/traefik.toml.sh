@@ -147,7 +147,7 @@ echo "${TRAEFIK_SSL_KEY}" > ${TRAEFIK_SSL_KEY_FILE}
 echo "${TRAEFIK_SSL_CRT}" > ${TRAEFIK_SSL_CRT_FILE}
 
 
-if [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xtrue" ] || [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xonly" ] || [ "X${TRAEFIK_ACME_ENABLE}" == "Xtrue" ]; then
+if [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xtrue" ] || [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xonly" ]; then
   TRAEFIK_ENTRYPOINTS_HTTPS="\
   [entryPoints.https]
     address = \":${TRAEFIK_HTTPS_PORT}\"
