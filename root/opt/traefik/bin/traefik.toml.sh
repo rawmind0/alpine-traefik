@@ -253,7 +253,7 @@ ReadOnly = ${TRAEFIK_ADMIN_READ_ONLY}
 "
 
     if [ "X${TRAEFIK_ADMIN_SSL}" == "Xtrue" ]; then
-        TRAEFIK_ADMIN_CFG=${TRAEFIK_ADMIN_CFG}"
+        TRAEFIK_ADMIN_CFG=${TRAEFIK_ADMIN_CFG}"\
 certFile = \"${TRAEFIK_SSL_CRT_FILE}\"
 keyFile = \"${TRAEFIK_SSL_KEY_FILE}\"
 "
