@@ -57,6 +57,7 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_ADMIN_ENABLE="false"								# "true" enables web ui and rest api.
 - TRAEFIK_HTTPS_COMPRESSION="true"                       # Enable https compression
 - TRAEFIK_ADMIN_PORT=8000								# admin port > 1024 due to run as non privileged user
+- TRAEFIK_ADMIN_SSL=false								# "true" enables https on the web ui and rest api with the `TRAEFIK_SSL_CRT` certificate
 - TRAEFIK_CONSTRAINTS=""                                # Traefik constraint param. EG: \\"tag==api\\"
 - TRAEFIK_LOG_LEVEL="INFO"								# Log level
 - TRAEFIK_DEBUG="false"									# Enable/disable debug mode
