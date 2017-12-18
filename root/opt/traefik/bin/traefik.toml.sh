@@ -147,25 +147,30 @@ x8NPFRMB44AWyLI=
 echo "${TRAEFIK_SSL_KEY}" > ${TRAEFIK_SSL_KEY_FILE}
 echo "${TRAEFIK_SSL_CRT}" > ${TRAEFIK_SSL_CRT_FILE}
 
-filelist=`ls -1 ${TRAEFIK_SSL_PATH}/*.key | rev | cut -d"." -f2- | rev`
-RC=`echo $?`
 
-if [ $RC -eq 0 ]; then
-    TRAEFIK_ENTRYPOINTS_HTTPS="\
+if [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xtrue" ] || [ "X${TRAEFIK_HTTPS_ENABLE}" == "Xonly" ]; then
+  TRAEFIK_ENTRYPOINTS_HTTPS="\
   [entryPoints.https]
-  address = \":${TRAEFIK_HTTPS_PORT}\"
-  compress = ${TRAEFIK_HTTPS_COMPRESSION}
+    address = \":${TRAEFIK_HTTPS_PORT}\"
+    compress = ${TRAEFIK_HTTPS_COMPRESSION}
     [entryPoints.https.tls]
-      MinVersion = \"$TRAEFIK_HTTPS_MIN_TLS\""
-    for i in $filelist; do
-        if [ -f "$i.crt" ]; then
-            TRAEFIK_ENTRYPOINTS_HTTPS=$TRAEFIK_ENTRYPOINTS_HTTPS"
-      [[entryPoints.https.tls.certificates]]
-      certFile = \"${i}.crt\"
-      keyFile = \"${i}.key\"
+      MinVersion = \"${TRAEFIK_HTTPS_MIN_TLS}\"
 "
-        fi
-    done
+
+  filelist=`ls -1 ${TRAEFIK_SSL_PATH}/*.key | rev | cut -d"." -f2- | rev`
+  RC=`echo $?`
+
+  if [ $RC -eq 0 ] && [ "X${TRAEFIK_ACME_ENABLE}" == "Xfalse" ]; then
+      for i in $filelist; do
+          if [ -f "$i.crt" ]; then
+              TRAEFIK_ENTRYPOINTS_HTTPS=$TRAEFIK_ENTRYPOINTS_HTTPS"
+        [[entryPoints.https.tls.certificates]]
+        certFile = \"${i}.crt\"
+        keyFile = \"${i}.key\"
+"
+          fi
+      done
+  fi
 fi
 
 if [ "X${TRAEFIK_FILE_ENABLE}" == "Xtrue" ]; then
