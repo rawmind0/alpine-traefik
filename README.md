@@ -13,7 +13,7 @@ docker build -t rawmind/alpine-traefik:<version> .
 
 ## Versions
 
-- `1.5.0-rc5-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.5.0-rc5-0/Dockerfile)
+- `1.5.0-rc5-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.5.0-rc5-1/Dockerfile)
 - `1.4.6-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.6-0/Dockerfile)
 - `1.4.5-3` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.5-3/Dockerfile)
 - `1.4.4-4` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.4-4/Dockerfile)
@@ -84,7 +84,7 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_ACME_ONDEMAND="true"							# ACME ondemand parameter
 - TRAEFIK_ACME_ONHOSTRULE="true"						# ACME OnHostRule parameter
 - TRAEFIK_ACME_CASERVER="https://acme-v01.api.letsencrypt.org/directory"						# ACME caServer parameter
-- TRAEFIK_FILE_ENABLE="true"							# Enable/disable file backend
+- TRAEFIK_FILE_ENABLE="false"							# Enable/disable file backend
 - TRAEFIK_FILE_NAME="${SERVICE_HOME}/etc/rules.toml"    # File name for file backend
 - TRAEFIK_K8S_ENABLE="false"							# Enable/disable traefik K8S integration
 - TRAEFIK_RANCHER_ENABLE="false"						# Enable/disable traefik RANCHER integration

@@ -46,7 +46,7 @@ TRAEFIK_RANCHER_INTERVALPOLL=${TRAEFIK_RANCHER_INTERVALPOLL:-"false"}
 TRAEFIK_RANCHER_OPTS=${TRAEFIK_RANCHER_OPTS:-""}
 TRAEFIK_RANCHER_PREFIX=${TRAEFIK_RANCHER_PREFIX:-"/2016-07-29"}
 TRAEFIK_FILE_NAME=${TRAEFIK_FILE_NAME:-${SERVICE_HOME}"/etc/rules.toml"}
-TRAEFIK_FILE_ENABLE=${TRAEFIK_FILE_ENABLE:-"true"}
+TRAEFIK_FILE_ENABLE=${TRAEFIK_FILE_ENABLE:-"false"}
 TRAEFIK_FILE_OPTS=${TRAEFIK_FILE_OPTS:-""}
 TRAEFIK_WEB=${TRAEFIK_WEB:-""}
 CATTLE_URL=${CATTLE_URL:-""}
@@ -55,8 +55,8 @@ CATTLE_SECRET_KEY=${CATTLE_SECRET_KEY:-""}
 
 TRAEFIK_ENTRYPOINTS_HTTP="\
   [entryPoints.http]
-  address = \":${TRAEFIK_HTTP_PORT}\"
-  compress = ${TRAEFIK_HTTP_COMPRESSION}
+    address = \":${TRAEFIK_HTTP_PORT}\"
+    compress = ${TRAEFIK_HTTP_COMPRESSION}
 "
 
 # Default ssl key. Could be overwritten with TRAEFIK_SSL_KEY env var.
@@ -215,17 +215,17 @@ caServer = \"${TRAEFIK_ACME_CASERVER}\"
 entryPoint = \"https\"
 "
 
-    if [ "X${TRAEFIK_ACME_CHALLENGE}" == "Xhttp" ]
+    if [ "X${TRAEFIK_ACME_CHALLENGE}" == "Xhttp" ]; then
         TRAEFIK_ACME_CFG=${TRAEFIK_ACME_CFG}"\
   [acme.httpChallenge]
-    entryPoint = "${TRAEFIK_ACME_CHALLENGE_HTTP_ENTRYPOINT}"
+    entryPoint = \"${TRAEFIK_ACME_CHALLENGE_HTTP_ENTRYPOINT}\"
 "
     fi
 
-    if [ "X${TRAEFIK_ACME_CHALLENGE}" == "Xdns" ]
+    if [ "X${TRAEFIK_ACME_CHALLENGE}" == "Xdns" ]; then
         TRAEFIK_ACME_CFG=${TRAEFIK_ACME_CFG}"\
   [acme.dnsChallenge]
-    provider = "${TRAEFIK_ACME_CHALLENGE_DNS_PROVIDER}"
+    provider = \"${TRAEFIK_ACME_CHALLENGE_DNS_PROVIDER}\"
     delayBeforeCheck = ${TRAEFIK_ACME_CHALLENGE_DNS_DELAY}
 "
     fi
