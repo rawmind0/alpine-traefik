@@ -81,6 +81,7 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_ACME_CHALLENGE_DNS_PROVIDER=""                # Set traefik acme dns challenge provider. You need to manually add configuration env variables accordingly the dns provider you use. [acme dns provider](http://v1-5.archive.docs.traefik.io/configuration/acme/#provider)
 - TRAEFIK_ACME_CHALLENGE_DNS_DELAY=""                # Set traefik acme dns challenge delayBeforeCheck. [acme dns challenge](http://v1-5.archive.docs.traefik.io/configuration/acme/#acmednschallenge)
 - TRAEFIK_ACME_EMAIL="test@traefik.io"					# Default email
+- TRAEFIK_ACME_DNSPROVIDER=""					# Use a DNS based acme challenge rather than external HTTPS access
 - TRAEFIK_ACME_ONDEMAND="true"							# ACME ondemand parameter
 - TRAEFIK_ACME_ONHOSTRULE="true"						# ACME OnHostRule parameter
 - TRAEFIK_ACME_CASERVER="https://acme-v01.api.letsencrypt.org/directory"						# ACME caServer parameter
