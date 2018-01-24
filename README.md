@@ -13,7 +13,7 @@ docker build -t rawmind/alpine-traefik:<version> .
 
 ## Versions
 
-- `1.5.0-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.5.0-0/Dockerfile)
+- `1.5.0-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.5.0-1/Dockerfile)
 - `1.4.6-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.6-0/Dockerfile)
 - `1.4.5-3` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.5-3/Dockerfile)
 - `1.4.4-4` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.4-4/Dockerfile)
@@ -56,20 +56,19 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_HTTPS_ENABLE="false"							# "true" enables https and http endpoints. "Only" enables https endpoints and redirect http to https.
 - TRAEFIK_HTTPS_PORT=8443								# https port > 1024 due to run as non privileged user
 - TRAEFIK_HTTPS_MIN_TLS="VersionTLS12"					# Minimal allowed tls version to accept connections from
-- TRAEFIK_ADMIN_ENABLE="false"								# "true" enables web ui and rest api.
-- TRAEFIK_HTTPS_COMPRESSION="true"                       # Enable https compression
+- TRAEFIK_HTTPS_COMPRESSION="true"                      # Enable https compression
+- TRAEFIK_ADMIN_ENABLE="false"                          # "true" enables api, rest, ping and webui
 - TRAEFIK_ADMIN_PORT=8000								# admin port > 1024 due to run as non privileged user
-- TRAEFIK_ADMIN_SSL=false								# "true" enables https on the web ui and rest api with the `TRAEFIK_SSL_CRT` certificate
+- TRAEFIK_ADMIN_SSL=false								# "true" enables https on api, rest, ping and webui using  `TRAEFIK_SSL_CRT` certificate
+- TRAEFIK_ADMIN_STATISTICS=10                           # Enable more detailed statistics
+- TRAEFIK_ADMIN_BASIC_AUTH_USERS=""                     # To enable basic auth on api, rest, ping and webui
+- TRAEFIK_ADMIN_DIGEST_AUTH_USERS=""                    # To enable digest auth on api, rest, ping and webui
 - TRAEFIK_CONSTRAINTS=""                                # Traefik constraint param. EG: \\"tag==api\\"
 - TRAEFIK_LOG_LEVEL="INFO"								# Log level
 - TRAEFIK_DEBUG="false"									# Enable/disable debug mode
 - TRAEFIK_INSECURE_SKIP="false"							# Enable/disable InsecureSkipVerify parameter
 - TRAEFIK_LOG_FILE="/opt/traefik/log/traefik.log"}		# Log file. Redirected to docker stdout.
 - TRAEFIK_ACCESS_FILE="/opt/traefik/log/access.log"}	# Access file. Redirected to docker stdout.
-- TRAEFIK_ADMIN_READ_ONLY="false"								# "true" limits rest api calls to read only.
-- TRAEFIK_ADMIN_STATISTICS=10                            # Enable more detailed statistics
-- TRAEFIK_ADMIN_BASIC_AUTH_USERS=""                            # To enable basic auth on the webui
-- TRAEFIK_ADMIN_DIGEST_AUTH_USERS=""                            # To enable digest auth on the webui
 - TRAEFIK_SSL_PATH="/opt/traefik/certs"					# Path to search .key and .crt files
 - TRAEFIK_SSL_KEY=<DEMO KEY>                            # ssl key 
 - TRAEFIK_SSL_KEY_FILE=${TRAEFIK_SSL_PATH}"/"${SERVICE_NAME}".key" # Default key file.
@@ -81,7 +80,6 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_ACME_CHALLENGE_DNS_PROVIDER=""                # Set traefik acme dns challenge provider. You need to manually add configuration env variables accordingly the dns provider you use. [acme dns provider](http://v1-5.archive.docs.traefik.io/configuration/acme/#provider)
 - TRAEFIK_ACME_CHALLENGE_DNS_DELAY=""                # Set traefik acme dns challenge delayBeforeCheck. [acme dns challenge](http://v1-5.archive.docs.traefik.io/configuration/acme/#acmednschallenge)
 - TRAEFIK_ACME_EMAIL="test@traefik.io"					# Default email
-- TRAEFIK_ACME_ONDEMAND="true"							# ACME ondemand parameter
 - TRAEFIK_ACME_ONHOSTRULE="true"						# ACME OnHostRule parameter
 - TRAEFIK_ACME_CASERVER="https://acme-v01.api.letsencrypt.org/directory"						# ACME caServer parameter
 - TRAEFIK_FILE_ENABLE="false"							# Enable/disable file backend
@@ -95,8 +93,11 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_RANCHER_HEALTHCHECK="false"					# Rancher EnableServiceHealthFilter
 - TRAEFIK_RANCHER_INTERVALPOLL="false"      # Rancher enable/disable intervalpoll
 - TRAEFIK_RANCHER_PREFIX="/2016-07-29"      # Rancher metadata prefix
-- TRAEFIK_PROMETHEUS_ENABLE="true"			# Enable Prometheus to pull statistics
-- TRAEFIK_PROMETHEUS_BUCKETS="[0.1,0.3,1.2,5.0]" 	# To define Prometheus buckets
+- TRAEFIK_METRICS_ENABLE="false"            # Enable/disable traefik [metrics](https://docs.traefik.io/configuration/metrics/)  
+- TRAEFIK_METRICS_EXPORTER="prometheus"     # Enable metrics exporter, prometheus | datadog | statsd | influxdb 
+- TRAEFIK_METRICS_PUSH="10"                   # Metrics exporter push interval in seconds. datadog | statsd | influxdb
+- TRAEFIK_METRICS_ADDRESS=""                  # Metrics exporter address. datadog | statsd | influxdb 
+- TRAEFIK_METRICS_PROMETHEUS_BUCKETS="[0.1,0.3,1.2,5.0]"  # Config Prometheus buckets
 - CATTLE_URL=""											# Rancher API url
 - CATTLE_ACCESS_KEY=""									# Rancher access key
 - CATTLE_SECRET_KEY=""									# Rancher secret key
