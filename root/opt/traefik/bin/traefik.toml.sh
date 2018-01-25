@@ -198,7 +198,7 @@ if [ "${TRAEFIK_ADMIN_ENABLE}" == "true" ]; then
         TRAEFIK_ENTRYPOINTS_ADMIN=${TRAEFIK_ENTRYPOINTS_ADMIN}"\
     [entryPoints.traefik.tls]
       MinVersion = \"${TRAEFIK_HTTPS_MIN_TLS}\"
-      [[entryPoints.https.tls.certificates]]
+      [[entryPoints.traefik.tls.certificates]]
         certFile = \"${TRAEFIK_SSL_CRT_FILE}\"
         keyFile = \"${TRAEFIK_SSL_KEY_FILE}\"
 "
