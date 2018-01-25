@@ -283,14 +283,14 @@ if [ "${TRAEFIK_RANCHER_ENABLE}" == "true" ]; then
     fi
 
     if [ "${TRAEFIK_RANCHER_MODE}" == "api" ]; then
-        TRAEFIK_RANCHER_OPTS=${TRAEFIK_RANCHER_OPTS}"
+        TRAEFIK_RANCHER_OPTS=${TRAEFIK_RANCHER_OPTS}"\
   [rancher.api]
     Endpoint = \"${CATTLE_URL}\"
     AccessKey = \"${CATTLE_ACCESS_KEY}\"
     SecretKey = \"${CATTLE_SECRET_KEY}\"
 "
     elif [ "${TRAEFIK_RANCHER_MODE}" == "metadata" ]; then
-        TRAEFIK_RANCHER_OPTS=${TRAEFIK_RANCHER_OPTS}"
+        TRAEFIK_RANCHER_OPTS=${TRAEFIK_RANCHER_OPTS}"\
   [rancher.metadata]
     IntervalPoll = ${TRAEFIK_RANCHER_INTERVALPOLL}
     Prefix = \"${TRAEFIK_RANCHER_PREFIX}\"
