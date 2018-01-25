@@ -13,7 +13,7 @@ docker build -t rawmind/alpine-traefik:<version> .
 
 ## Versions
 
-- `1.5.0-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.5.0-1/Dockerfile)
+- `1.5.0-2` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.5.0-2/Dockerfile)
 - `1.4.6-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.6-0/Dockerfile)
 - `1.4.5-3` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.5-3/Dockerfile)
 - `1.4.4-4` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.4.4-4/Dockerfile)
@@ -94,10 +94,10 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_RANCHER_INTERVALPOLL="false"      # Rancher enable/disable intervalpoll
 - TRAEFIK_RANCHER_PREFIX="/2016-07-29"      # Rancher metadata prefix
 - TRAEFIK_METRICS_ENABLE="false"            # Enable/disable traefik [metrics](https://docs.traefik.io/configuration/metrics/)  
-- TRAEFIK_METRICS_EXPORTER="prometheus"     # Enable metrics exporter, prometheus | datadog | statsd | influxdb 
-- TRAEFIK_METRICS_PUSH="10"                   # Metrics exporter push interval in seconds. datadog | statsd | influxdb
-- TRAEFIK_METRICS_ADDRESS=""                  # Metrics exporter address. datadog | statsd | influxdb 
-- TRAEFIK_METRICS_PROMETHEUS_BUCKETS="[0.1,0.3,1.2,5.0]"  # Config Prometheus buckets
+- TRAEFIK_METRICS_EXPORTER=""               # Metrics exporter prometheus | datadog | statsd | influxdb 
+- TRAEFIK_METRICS_PUSH="10"                 # Metrics exporter push interval (s). datadog | statsd | influxdb
+- TRAEFIK_METRICS_ADDRESS=""                # Metrics exporter address. datadog | statsd | influxdb 
+- TRAEFIK_METRICS_PROMETHEUS_BUCKETS="[0.1,0.3,1.2,5.0]"  # Metrics buckets for prometheus
 - CATTLE_URL=""											# Rancher API url
 - CATTLE_ACCESS_KEY=""									# Rancher access key
 - CATTLE_SECRET_KEY=""									# Rancher secret key
