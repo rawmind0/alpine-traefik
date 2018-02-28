@@ -6,6 +6,7 @@ TRAEFIK_HTTP_PORT=${TRAEFIK_HTTP_PORT:-"8080"}
 TRAEFIK_HTTPS_ENABLE=${TRAEFIK_HTTPS_ENABLE:-"false"}
 TRAEFIK_HTTPS_PORT=${TRAEFIK_HTTPS_PORT:-"8443"}
 TRAEFIK_HTTPS_MIN_TLS=${TRAEFIK_HTTPS_MIN_TLS:-"VersionTLS12"}
+TRAEFIK_TRUSTEDIPS=${TRAEFIK_TRUSTEDIPS:-""}
 TRAEFIK_ADMIN_ENABLE=${TRAEFIK_ADMIN_ENABLE:-"false"}
 TRAEFIK_ADMIN_PORT=${TRAEFIK_ADMIN_PORT:-"8000"}
 TRAEFIK_ADMIN_SSL=${TRAEFIK_ADMIN_SSL:-"false"}
@@ -52,6 +53,25 @@ TRAEFIK_FILE_OPTS=${TRAEFIK_FILE_OPTS:-""}
 CATTLE_URL=${CATTLE_URL:-""}
 CATTLE_ACCESS_KEY=${CATTLE_ACCESS_KEY:-""}
 CATTLE_SECRET_KEY=${CATTLE_SECRET_KEY:-""}
+
+#
+# Converts 1.2.3.4/xx,5.6.7.8 to ["1.2.3.4/xx","5.6.7.8"]
+#
+csv2array() {
+    IPS="$1"
+    FIRST="TRUE"
+    IFS=" ,"
+    echo -n "["
+    for IP in $IPS ; do
+        if [ x"$FIRST" != x"TRUE" ] ; then
+            echo -n ","
+        fi
+        echo -n "\"$IP\""
+        FIRST="FALSE"
+    done
+    echo -n "]"
+    unset $IFS
+}
 
 TRAEFIK_ENTRYPOINTS_OPTS="\
 [entryPoints]
@@ -218,6 +238,24 @@ if [ "${TRAEFIK_ADMIN_ENABLE}" == "true" ]; then
 [ping]
   entryPoint = \"traefik\"
 "
+fi
+
+if [ -n "${TRAEFIK_TRUSTEDIPS}" ]; then
+    trustedips=`csv2array ${TRAEFIK_TRUSTEDIPS}`
+    TRAEFIK_ENTRYPOINTS_HTTP=$TRAEFIK_ENTRYPOINTS_HTTP"\
+    [entryPoints.http.proxyProtocol]
+      trustedIPs = ${trustedips}
+    [entryPoints.http.forwardedHeaders]
+      trustedIPs = ${trustedips}
+"
+  if [ "${TRAEFIK_HTTPS_ENABLE}" == "true" ] || [ "${TRAEFIK_HTTPS_ENABLE}" == "only" ]; then
+    TRAEFIK_ENTRYPOINTS_HTTPS=$TRAEFIK_ENTRYPOINTS_HTTPS"\
+    [entryPoints.https.proxyProtocol]
+      trustedIPs = ${trustedips}
+    [entryPoints.https.forwardedHeaders]
+      trustedIPs = ${trustedips}
+"
+  fi
 fi
 
 if [ "${TRAEFIK_HTTPS_ENABLE}" == "true" ]; then
