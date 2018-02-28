@@ -241,7 +241,7 @@ if [ "${TRAEFIK_ADMIN_ENABLE}" == "true" ]; then
 fi
 
 if [ -n "${TRAEFIK_TRUSTEDIPS}" ]; then
-    trustedips = `csv2array ${TRAEFIK_TRUSTEDIPS}`
+    trustedips=`csv2array ${TRAEFIK_TRUSTEDIPS}`
     TRAEFIK_ENTRYPOINTS_HTTP=$TRAEFIK_ENTRYPOINTS_HTTP"\
     [entryPoints.http.proxyProtocol]
        trustedIPs = ${trustedips}
