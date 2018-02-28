@@ -77,11 +77,11 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_SSL_KEY_FILE=${TRAEFIK_SSL_PATH}"/"${SERVICE_NAME}".key" # Default key file.
 - TRAEFIK_SSL_CRT=<DEMO CRT>                            # ssl cert 
 - TRAEFIK_SSL_CRT_FILE=${TRAEFIK_SSL_PATH}"/"${SERVICE_NAME}".crt"} # Default crt file.
-- TRAEFIK_ACME_ENABLE="false"							# Enable/disable traefik ACME feature. [acme](http://v1-5.archive.docs.traefik.io/configuration/acme/)
+- TRAEFIK_ACME_ENABLE="false"							# Enable/disable traefik ACME feature. [acme](https://docs.traefik.io/configuration/acme/)
 - TRAEFIK_ACME_CHALLENGE=""                             # Set http | dns to activate traefik acme challenge mode. 
-- TRAEFIK_ACME_CHALLENGE_HTTP_ENTRYPOINT="http"         # Set traefik acme http challenge entrypoint. [acme http challenge](http://v1-5.archive.docs.traefik.io/configuration/acme/#acmehttpchallenge)
-- TRAEFIK_ACME_CHALLENGE_DNS_PROVIDER=""                # Set traefik acme dns challenge provider. You need to manually add configuration env variables accordingly the dns provider you use. [acme dns provider](http://v1-5.archive.docs.traefik.io/configuration/acme/#provider)
-- TRAEFIK_ACME_CHALLENGE_DNS_DELAY=""                # Set traefik acme dns challenge delayBeforeCheck. [acme dns challenge](http://v1-5.archive.docs.traefik.io/configuration/acme/#acmednschallenge)
+- TRAEFIK_ACME_CHALLENGE_HTTP_ENTRYPOINT="http"         # Set traefik acme http challenge entrypoint. [acme http challenge](https://docs.traefik.io/configuration/acme/#acmehttpchallenge)
+- TRAEFIK_ACME_CHALLENGE_DNS_PROVIDER=""                # Set traefik acme dns challenge provider. You need to manually add configuration env variables accordingly the dns provider you use. [acme dns provider](https://docs.traefik.io/configuration/acme/#provider)
+- TRAEFIK_ACME_CHALLENGE_DNS_DELAY=""                # Set traefik acme dns challenge delayBeforeCheck. [acme dns challenge](https://docs.traefik.io/configuration/acme/#acmednschallenge)
 - TRAEFIK_ACME_EMAIL="test@traefik.io"					# Default email
 - TRAEFIK_ACME_ONHOSTRULE="true"						# ACME OnHostRule parameter
 - TRAEFIK_ACME_CASERVER="https://acme-v01.api.letsencrypt.org/directory"						# ACME caServer parameter
