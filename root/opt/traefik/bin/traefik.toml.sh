@@ -244,16 +244,16 @@ if [ -n "${TRAEFIK_TRUSTEDIPS}" ]; then
     trustedips=`csv2array ${TRAEFIK_TRUSTEDIPS}`
     TRAEFIK_ENTRYPOINTS_HTTP=$TRAEFIK_ENTRYPOINTS_HTTP"\
     [entryPoints.http.proxyProtocol]
-       trustedIPs = ${trustedips}
+      trustedIPs = ${trustedips}
     [entryPoints.http.forwardedHeaders]
-       trustedIPs = ${trustedips}
+      trustedIPs = ${trustedips}
 "
   if [ "${TRAEFIK_HTTPS_ENABLE}" == "true" ] || [ "${TRAEFIK_HTTPS_ENABLE}" == "only" ]; then
     TRAEFIK_ENTRYPOINTS_HTTPS=$TRAEFIK_ENTRYPOINTS_HTTPS"\
     [entryPoints.https.proxyProtocol]
-       trustedIPs = ${trustedips}
+      trustedIPs = ${trustedips}
     [entryPoints.https.forwardedHeaders]
-       trustedIPs = ${trustedips}
+      trustedIPs = ${trustedips}
 "
   fi
 fi
