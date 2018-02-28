@@ -240,6 +240,24 @@ if [ "${TRAEFIK_ADMIN_ENABLE}" == "true" ]; then
 "
 fi
 
+if [ -n "${TRAEFIK_TRUSTEDIPS}" ]; then
+    trustedips = `csv2array ${TRAEFIK_TRUSTEDIPS}`
+    TRAEFIK_ENTRYPOINTS_HTTP=$TRAEFIK_ENTRYPOINTS_HTTP"\
+    [entryPoints.http.proxyProtocol]
+       trustedIPs = ${trustedips}
+    [entryPoints.http.forwardedHeaders]
+       trustedIPs = ${trustedips}
+"
+  if [ "${TRAEFIK_HTTPS_ENABLE}" == "true" ] || [ "${TRAEFIK_HTTPS_ENABLE}" == "only" ]; then
+    TRAEFIK_ENTRYPOINTS_HTTPS=$TRAEFIK_ENTRYPOINTS_HTTPS"\
+    [entryPoints.https.proxyProtocol]
+       trustedIPs = ${trustedips}
+    [entryPoints.https.forwardedHeaders]
+       trustedIPs = ${trustedips}
+"
+  fi
+fi
+
 if [ "${TRAEFIK_HTTPS_ENABLE}" == "true" ]; then
     TRAEFIK_ENTRYPOINTS_OPTS=${TRAEFIK_ENTRYPOINTS_OPTS}${TRAEFIK_ENTRYPOINTS_HTTP}${TRAEFIK_ENTRYPOINTS_HTTPS}
     TRAEFIK_ENTRYPOINTS='"http", "https"'
@@ -253,25 +271,6 @@ elif [ "${TRAEFIK_HTTPS_ENABLE}" == "only" ]; then
 else
     TRAEFIK_ENTRYPOINTS_OPTS=${TRAEFIK_ENTRYPOINTS_OPTS}${TRAEFIK_ENTRYPOINTS_HTTP}
     TRAEFIK_ENTRYPOINTS='"http"'
-fi
-
-
-if [ -n "${TRAEFIK_TRUSTEDIPS}" ]; then
-    trustedips = `csv2array ${TRAEFIK_TRUSTEDIPS}`
-    TRAEFIK_ENTRYPOINTS_HTTP=$TRAEFIK_ENTRYPOINTS_HTTP"\
-    [entryPoints.http.proxyProtocol]
-       trustedIPs = $trustedips
-    [entryPoints.http.forwardedHeaders]
-       trustedIPs = $trustedips
-"
-  if [ "${TRAEFIK_HTTPS_ENABLE}" == "true" ] || [ "${TRAEFIK_HTTPS_ENABLE}" == "only" ]; then
-    TRAEFIK_ENTRYPOINTS_HTTPS=$TRAEFIK_ENTRYPOINTS_HTTPS"\
-    [entryPoints.https.proxyProtocol]
-       trustedIPs = $trustedips
-    [entryPoints.https.forwardedHeaders]
-       trustedIPs = $trustedips
-"
-  fi
 fi
 
 if [ "${TRAEFIK_K8S_ENABLE}" == "true" ]; then
