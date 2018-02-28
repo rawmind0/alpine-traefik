@@ -60,6 +60,7 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_HTTPS_PORT=8443								# https port > 1024 due to run as non privileged user
 - TRAEFIK_HTTPS_MIN_TLS="VersionTLS12"					# Minimal allowed tls version to accept connections from
 - TRAEFIK_HTTPS_COMPRESSION="true"                      # Enable https compression
+- TRAEFIK_TRUSTEDIPS=""                      # Enable proxyProtocol and forwardHeaders for these IPs (eg: "172.0.0.0/16,192.168.0.1")
 - TRAEFIK_ADMIN_ENABLE="false"                          # "true" enables api, rest, ping and webui
 - TRAEFIK_ADMIN_PORT=8000								# admin port > 1024 due to run as non privileged user
 - TRAEFIK_ADMIN_SSL=false								# "true" enables https on api, rest, ping and webui using  `TRAEFIK_SSL_CRT` certificate
