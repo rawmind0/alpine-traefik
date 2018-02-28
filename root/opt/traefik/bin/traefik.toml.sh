@@ -337,11 +337,15 @@ cat << EOF > ${SERVICE_HOME}/etc/traefik.toml
 # traefik.toml
 debug = ${TRAEFIK_DEBUG}
 logLevel = "${TRAEFIK_LOG_LEVEL}"
-traefikLogsFile = "${TRAEFIK_LOG_FILE}"
-accessLogsFile = "${TRAEFIK_ACCESS_FILE}"
 InsecureSkipVerify = ${TRAEFIK_INSECURE_SKIP}
 defaultEntryPoints = [${TRAEFIK_ENTRYPOINTS}]
 sendAnonymousUsage = ${TRAEFIK_USAGE_ENABLE}
+
+[traefikLog]
+  filePath = "${TRAEFIK_LOG_FILE}"
+
+[accessLog]
+  filePath = "${TRAEFIK_ACCESS_FILE}"
 
 ${TRAEFIK_ENTRYPOINTS_OPTS}
 ${TRAEFIK_ADMIN_API}
