@@ -104,6 +104,11 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_METRICS_PUSH="10"                 # Metrics exporter push interval (s). datadog | statsd | influxdb
 - TRAEFIK_METRICS_ADDRESS=""                # Metrics exporter address. datadog | statsd | influxdb 
 - TRAEFIK_METRICS_PROMETHEUS_BUCKETS="[0.1,0.3,1.2,5.0]"  # Metrics buckets for prometheus
+- TRAEFIK_TIMEOUT_READ="0"      # respondingTimeouts [readTimeout](https://docs.traefik.io/configuration/commons/#timeouts)
+- TRAEFIK_TIMEOUT_WRITE="0"     # respondingTimeouts [writeTimeout](https://docs.traefik.io/configuration/commons/#timeouts)
+- TRAEFIK_TIMEOUT_IDLE="180"    # respondingTimeouts [idleTimeout](https://docs.traefik.io/configuration/commons/#timeouts)
+- TRAEFIK_TIMEOUT_DIAL="30"     # forwardingTimeouts [dialTimeout](https://docs.traefik.io/configuration/commons/#forwarding-timeouts)
+- TRAEFIK_TIMEOUT_HEADER="0"    # forwardingTimeouts [responseHeaderTimeout](https://docs.traefik.io/configuration/commons/#forwarding-timeouts)
 - CATTLE_URL=""											# Rancher API url
 - CATTLE_ACCESS_KEY=""									# Rancher access key
 - CATTLE_SECRET_KEY=""									# Rancher secret key
