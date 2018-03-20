@@ -66,8 +66,8 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_ADMIN_PORT=8000								# admin port > 1024 due to run as non privileged user
 - TRAEFIK_ADMIN_SSL=false								# "true" enables https on api, rest, ping and webui using  `TRAEFIK_SSL_CRT` certificate
 - TRAEFIK_ADMIN_STATISTICS=10                           # Enable more detailed statistics
-- TRAEFIK_ADMIN_BASIC_AUTH_USERS=""                     # To enable basic auth on api, rest, ping and webui
-- TRAEFIK_ADMIN_DIGEST_AUTH_USERS=""                    # To enable digest auth on api, rest, ping and webui
+- TRAEFIK_ADMIN_AUTH_METHOD="basic"                     # Auth method to use on api, rest, ping and webui. basic | digest
+- TRAEFIK_ADMIN_AUTH_USERS=""                           # Basic or digest users created with htpasswd or htdigest. 
 - TRAEFIK_CONSTRAINTS=""                                # Traefik constraint param. EG: \\"tag==api\\"
 - TRAEFIK_LOG_LEVEL="INFO"								# Log level
 - TRAEFIK_DEBUG="false"									# Enable/disable debug mode
