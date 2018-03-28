@@ -37,6 +37,10 @@ traefik:
   - TRAEFIK_PROMETHEUS_BUCKETS=${prometheus_buckets}
   - TRAEFIK_SSL_KEY=${ssl_key}
   - TRAEFIK_SSL_CRT=${ssl_crt}
+  - TRAEFIK_CONSUL_ENABLE=${use_consul}
+  - TRAEFIK_CONSUL_ENDPOINT=${consul_endpoint}
+  - TRAEFIK_CONSUL_PREFIX=${consul_prefix}
+
   volumes_from:
   - traefik-conf
 traefik-conf:
