@@ -164,8 +164,8 @@
       required: true
       type: "boolean"
     - variable: "consul_endpoint"
-      description: "IP address and port of the Consul endpoint"
-      label: "IP:PORT"
+      description: "ip:port"
+      label: "Counsul endpoint address"
       default: "127.0.0.1:8500"
       required: true
       type: "string"
