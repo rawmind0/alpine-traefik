@@ -67,8 +67,7 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_ADMIN_SSL=false								# "true" enables https on api, rest, ping and webui using  `TRAEFIK_SSL_CRT` certificate
 - TRAEFIK_ADMIN_STATISTICS=10                           # Enable more detailed statistics
 - TRAEFIK_ADMIN_AUTH_METHOD="basic"                     # Auth method to use on api, rest, ping and webui. basic | digest
-- TRAEFIK_ADMIN_AUTH_USERS=""                           # Basic or digest users created with htpasswd or htdigest. 
-- TRAEFIK_CONSTRAINTS=""                                # Traefik constraint param. EG: \\"tag==api\\"
+- TRAEFIK_ADMIN_AUTH_USERS=""                           # Basic or digest users created with htpasswd or htdigest.
 - TRAEFIK_LOG_LEVEL="INFO"								# Log level
 - TRAEFIK_DEBUG="false"									# Enable/disable debug mode
 - TRAEFIK_INSECURE_SKIP="false"							# Enable/disable InsecureSkipVerify parameter
@@ -87,6 +86,12 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_ACME_EMAIL="test@traefik.io"					# Default email
 - TRAEFIK_ACME_ONHOSTRULE="true"						# ACME OnHostRule parameter
 - TRAEFIK_ACME_CASERVER="https://acme-v01.api.letsencrypt.org/directory"						# ACME caServer parameter
+- TRAEFIK_CONSUL_CATALOG_ENABLE="false"					# Enable/disable Consul catalog backend
+- TRAEFIK_CONSUL_CATALOG_DOMAIN="consul.localhost"		# Consul catalog domain
+- TRAEFIK_CONSUL_CATALOG_ENDPOINT="127.0.0.1:8500"		# Consul catalog endpoint
+- TRAEFIK_CONSUL_CATALOG_EXPOSED="false"				# Consul catalog ExposedByDefault
+- TRAEFIK_CONSUL_CATALOG_CONSTRAINTS=""                 # Consul catalog constraint param. EG: \\"tag==api\\"
+- TRAEFIK_CONSUL_CATALOG_PREFIX="traefik"				# Prefix used for Consul catalog tags
 - TRAEFIK_FILE_ENABLE="false"							# Enable/disable file backend
 - TRAEFIK_FILE_NAME="${SERVICE_HOME}/etc/rules.toml"    # File name for file backend
 - TRAEFIK_K8S_ENABLE="false"							# Enable/disable traefik K8S integration
@@ -96,6 +101,7 @@ Traefic is installed with the default configuration and some parameters can be o
 - TRAEFIK_RANCHER_DOMAIN="rancher.internal"				# Rancher domain
 - TRAEFIK_RANCHER_EXPOSED="false"						# Rancher ExposedByDefault
 - TRAEFIK_RANCHER_HEALTHCHECK="false"					# Rancher EnableServiceHealthFilter
+- TRAEFIK_RANCHER_CONSTRAINTS=""                        # Rancher constraint param. EG: \\"tag==api\\"
 - TRAEFIK_RANCHER_INTERVALPOLL="false"      # Rancher enable/disable intervalpoll
 - TRAEFIK_RANCHER_PREFIX="/2016-07-29"      # Rancher metadata prefix
 - TRAEFIK_USAGE_ENABLE="false"              # Enable/disable send Traefik [anonymous usage collection](https://docs.traefik.io/basics/#collected-data) 

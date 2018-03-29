@@ -21,7 +21,7 @@ traefik:
   - TRAEFIK_HTTPS_COMPRESSION=${compress_enable}
   - TRAEFIK_HTTPS_PORT=${https_port}
   - TRAEFIK_HTTPS_ENABLE=${https_enable}
-  - TRAEFIK_CONSTRAINTS=${constraints}
+  - TRAEFIK_RANCHER_CONSTRAINTS=${constraints}
   - TRAEFIK_ACME_ENABLE=${acme_enable}
   - TRAEFIK_ACME_EMAIL=${acme_email}
   - TRAEFIK_ACME_ONDEMAND=${acme_ondemand}
