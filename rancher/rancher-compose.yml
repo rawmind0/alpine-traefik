@@ -91,7 +91,7 @@
       description: "ACME caServer to use."
       label: "ACME caServer:"
       required: true
-      default: https://acme-v01.api.letsencrypt.org/directory
+      default: https://acme-v02.api.letsencrypt.org/directory
       type: "string"
     - variable: "ssl_key"
       description: "SSL key to secure the service. *Required if you enable https"
@@ -166,4 +166,3 @@ traefik:
     request_line: 'GET /ping HTTP/1.0'
     healthy_threshold: 2
     response_timeout: 5000
-
