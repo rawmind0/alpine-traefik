@@ -308,7 +308,7 @@ if [ "${TRAEFIK_HTTPS_ENABLE}" == "true" ] || [ "${TRAEFIK_HTTPS_ENABLE}" == "on
     delayBeforeCheck = ${TRAEFIK_ACME_CHALLENGE_DNS_DELAY}
 "
     fi
-    
+
 fi
 
 if [ "${TRAEFIK_RANCHER_ENABLE}" == "true" ]; then

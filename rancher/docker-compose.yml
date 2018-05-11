@@ -48,7 +48,7 @@ traefik-conf:
     io.rancher.container.start_once: 'true'
   tty: true
   log_opt: {}
-  image: rawmind/rancher-traefik:1.5.0-0
+  image: rawmind/rancher-traefik:1.5.4-0
   net: none
   volumes:
     - /opt/tools
