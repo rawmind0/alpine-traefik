@@ -1,24 +1,52 @@
-.catalog:
+version: '2'
+catalog:
   name: traefik
-  version: 1.6.0-rancher1
+  version: v1.6.0-rancher1
   description: |
-    (Experimental) Traefik load balancer.
+    Traefik load balancer.
   minimum_rancher_version: v0.59.0
   maintainer: "Raul Sanchez <rawmind@gmail.com>"
   uuid: traefik-0
   questions:
+    - variable: "rancher_integration"
+      label: "Choose rancher integration:"
+      description: |
+        Enable rancher integration mode. Traefik built in integration, metadata or api, or external sidekick integration with confd.
+      default: metadata
+      required: true
+      type: enum
+      options:
+        - metadata
+        - api
+        - external
+    - variable: "rancher_healthcheck"
+      description: |
+        Enable/disable rancher services healtcheck filter. If enable, just healthy services will be published.
+        Only valid for api and metadata integration.
+      label: "Rancher healthcheck filter:"
+      required: true
+      default: false
+      type: "boolean"
+    - variable: "usage_enable"
+      description: |
+        Enable/disable send anonymous usage collection to Traefik. See https://docs.traefik.io/basics/#collected-data
+      label: "Traefik send anonymous usage:"
+      required: true
+      default: false
+      type: "boolean"
+    - variable: "constraints"
+      description: |
+        Traefik constraints for rancher provider. Eg: "tag==api"
+        Only valid for api and metadata integration.
+      label: "Traefik constraints:"
+      required: false
+      default: ""
+      type: "string"
     - variable: "host_label"
       description: "Host label where to run traefik service."
       label: "Host label:"
       required: true
       default: "traefik_lb=true"
-      type: "string"
-    - variable: "constraints"
-      description: |
-        Traefik constraints for rancher provider. Eg: \"tag==api\"
-      label: "Constraints:"
-      required: false
-      default: ""
       type: "string"
     - variable: "http_port"
       description: "Traefik http public port to listen."
@@ -32,28 +60,20 @@
       required: true
       default: 8443
       type: "int"
-    - variable: "admin_enable"
-      label: "Enable Web UI:"
-      description: |
-        Enable Traefik Web UI to visualize frontends, backends and statistics.
-      default: false
-      required: true
-      type: "boolean"
-    - variable: "compress_enable"
-      label: "Enable compression:"
-      description: |
-        Enable Traefik compression for entrypoints.
-      default: true
-      required: true
-      type: "boolean"
     - variable: "admin_port"
-      description: "Traefik admin public port to listen."
+      description: "Traefik admin public port to listen for api, rest, ping and webui."
       label: "Admin port:"
       required: true
       default: 8000
       type: "int"
+    - variable: "admin_ssl"
+      description: "Enable ssl for api, rest, ping and webui."
+      label: "Admin ssl:"
+      required: true
+      default: false
+      type: "boolean"
     - variable: "https_enable"
-      label: "Enable HTTPS:"
+      label: "Https enable:"
       description: |
         Enable https working mode. If you activate, you need to fill SSL key and SSL crt in order to work.
       default: false
@@ -63,9 +83,25 @@
         - false
         - true
         - only
+    - variable: "https_min_tls"
+      description: |
+        Minimal allowed tls version to accept connections from.
+        See the traefik documentation for allowed values. Default is `VersionTLS12`.
+      label: "Https min tls:"
+      required: false
+      default: ""
+      type: "string"
+    - variable: "trusted_ips"
+      description: |
+        Enable proxyProtocol and forwardHeaders just for trusted IPs. Eg: `172.0.0.0/16,192.168.0.1`
+        See the traefik documentation for more info. Default is ``.
+      label: "Trusted IPs:"
+      required: false
+      default: ""
+      type: "string"
     - variable: "acme_enable"
       description: "Enable acme support on traefik."
-      label: "Enable ACME:"
+      label: "ACME enable:"
       required: true
       default: false
       type: "boolean"
@@ -75,12 +111,14 @@
       required: true
       default: "test@traefik.io"
       type: "string"
-    - variable: "acme_ondemand"
-      description: "Enable acme onDemand."
-      label: "ACME onDemand:"
+    - variable: "acme_challenge"
+      description: "ACME challenge."
+      label: "ACME challenge:"
       required: true
-      default: true
-      type: "boolean"
+      default: http
+      type: enum
+      options: # List of options if using type of `enum`
+        - http
     - variable: "acme_onhostrule"
       description: "Enable acme onHostRule."
       label: "ACME onHostRule:"
@@ -91,17 +129,34 @@
       description: "ACME caServer to use."
       label: "ACME caServer:"
       required: true
-      default: https://acme-v01.api.letsencrypt.org/directory
+      default: "https://acme-v01.api.letsencrypt.org/directory"
       type: "string"
+    - variable: "acme_vol_name"
+      description: "The volume name shared to store ACME certs"
+      label: "ACME Volume Name"
+      required: true
+      default: "traefik_acme_vol"
+      type: "string"
+    - variable: "acme_vol_driver"
+      description: "The volume driver shared to store ACME certs"
+      label: "ACME Volume Driver"
+      required: true
+      default: "local"
+      type: enum
+      options: # List of options if using type of `enum`
+        - local
+        - rancher-nfs
+        - rancher-efs
+        - rancher-ebs
     - variable: "ssl_key"
-      description: "SSL key to secure the service. *Required if you enable https"
-      label: "SSL key"
+      description: "SSL key to secure the service. *Required if you enable https or admin ssl"
+      label: "Https key"
       type: "multiline"
       required: false
       default: ""
     - variable: "ssl_crt"
-      description: "SSL cert to secure the service. *Required if you enable https"
-      label: "SSL crt"
+      description: "SSL cert to secure the service. *Required if you enable https or admin ssl"
+      label: "Https crt"
       type: "multiline"
       required: false
       default: ""
@@ -111,27 +166,56 @@
       required: true
       default: false
       type: "boolean"
-    - variable: "refresh_interval"
-      description: "Interval to poll/apply configuration changes."
-      label: "Refresh Interval (s):"
-      required: true
-      default: 10
-      type: "int"
-    - variable: "admin_readonly"
-      label: "Read only mode:"
+    - variable: "compress_enable"
+      label: "Enable compression:"
       description: |
-        Set REST API to read-only mode.
-      default: false
+        Enable Traefik compression for entrypoints.
+      default: true
       required: true
       type: "boolean"
+    - variable: "timeout_read"
+      label: "Timeout read:"
+      description: |
+        Traefik respondingTimeouts readTimeout (s).
+      default: 0
+      required: true
+      type: "int"
+    - variable: "timeout_write"
+      label: "Timeout write:"
+      description: |
+        Traefik respondingTimeouts writeTimeout (s).
+      default: 0
+      required: true
+      type: "int"
+    - variable: "timeout_idle"
+      label: "Timeout idle:"
+      description: |
+        Traefik respondingTimeouts idleTimeout (s).
+      default: 180
+      required: true
+      type: "int"
+    - variable: "timeout_dial"
+      label: "Timeout dial:"
+      description: |
+        Traefik forwardingTimeouts dialTimeout (s).
+      default: 30
+      required: true
+      type: "int"
+    - variable: "timeout_header"
+      label: "Timeout header:"
+      description: |
+        Traefik forwardingTimeouts responseHeaderTimeout (s).
+      default: 0
+      required: true
+      type: "int"
     - variable: "admin_statistics"
       description: "Enable more detailed statistics."
-      label: "Number of recents errors to keep:"
+      label: "Admin statistics history:"
       required: true
       default: 10
       type: "int"
     - variable: "admin_auth_method"
-      description: "Set admin auth method on the webui."
+      description: "Admin auth method on api, rest and webui."
       label: "Admin auth method:"
       required: true
       default: "basic"
@@ -140,30 +224,53 @@
         - basic
         - digest
     - variable: "admin_users"
-      description: "Admin auth user list on the webui. basic or digest format."
+      description: "Admin auth user list on api, rest and webui. Generate with htpassword for basic or htdigest with traefik realm for digest."
       label: "Admin users:"
       type: "multiline"
       required: false
       default: ""
-    - variable: "prometheus_enable"
-      description: "To enable statistics to be pulled by Prometheus."
-      label: "Enable Prometheus"
+    - variable: "metrics_enable"
+      description: "Enable traefik metrics."
+      label: "Metrics enable"
       default: false
       required: true
       type: "boolean"
-    - variable: "prometheus_buckets"
-      description: "To define your own buckets"
-      label: "Prometheus buckets"
-      default: "[0.1,0.3,1.2,5.0]"
-      required: true
+    - variable: "metrics_exporter"
+      description: "Traefik metrics exporter."
+      label: "Metrics exporter:"
+      required: false
+      default:
+      type: enum
+      options: # List of options if using type of `enum`
+        - prometheus
+        - datadog
+        - statsd
+        - influxdb
+    - variable: "metrics_push"
+      description: "Traefik metrics exporter push interval. Apply on datadog, statsd and influxdb."
+      label: "Metrics push interval (s):"
+      required: false
+      default: 10
+      type: "int"
+    - variable: "metrics_address"
+      description: "Traefik metrics exporter address to push. Apply on datadog, statsd and influxdb."
+      label: "Metrics address:"
+      required: false
+      default: ""
       type: "string"
-traefik:
-  retain_ip: true
-  health_check:
-    port: 8000
-    interval: 5000
-    unhealthy_threshold: 3
-    request_line: 'GET /ping HTTP/1.0'
-    healthy_threshold: 2
-    response_timeout: 5000
-
+    - variable: "metrics_prometheus_buckets"
+      description: "Traefik metrics buckets for prometheus."
+      label: "Metrics prometheus buckets"
+      default: "[0.1,0.3,1.2,5.0]"
+      required: false
+      type: "string"
+services:
+  traefik:
+    retain_ip: true
+    health_check:
+      healthy_threshold: 2
+      response_timeout: 5000
+      port: ${admin_port}
+      unhealthy_threshold: 3
+      interval: 5000
+      strategy: recreate
