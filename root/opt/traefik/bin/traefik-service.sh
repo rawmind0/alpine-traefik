@@ -30,6 +30,7 @@ function serviceStart {
     serviceLog
     serviceAccess
     log "[ Starting ${SERVICE_NAME}... ]"
+    [ -e "${SERVICE_HOME}/etc/acme_credentials" ] && . ${SERVICE_HOME}/etc/acme_credentials
     nohup ${SERVICE_HOME}/bin/traefik --configFile=${SERVICE_HOME}/etc/traefik.toml &
     echo $! > ${SERVICE_HOME}/traefik.pid
 }

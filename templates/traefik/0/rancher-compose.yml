@@ -69,6 +69,56 @@
       required: true
       default: false
       type: "boolean"
+    - variable: "acme_challenge_type"
+      description: "Either http for http based challange or DNS for DNS-01 based challenge"
+      label: "ACME challenge type:"
+      required: false
+      default: "http"
+      type: enum
+      options: # List of options if using type of `enum`
+        - http
+        - dns
+    - variable: "acme_challenge_dns_provider"
+      description: "If you selected the challenge type DNS, select your provider here."
+      label: "ACME challenge DNS provider (DNS only):"
+      required: false
+      type: enum
+      options: # List of options if using type of `enum`
+        - auroradns
+        - azure
+        - bluecat
+        - cloudflare
+        - cloudxns
+        - digitalocean
+        - dnsimple
+        - dnspod
+        - dnsmadeeasy
+        - duckdns
+        - dyn
+        - exoscale
+        - fastdns
+        - gandi
+        - gandiv5
+        - glesys
+        - godaddy
+        - gcloud
+        - lightsail
+        - linode
+        - namecheap
+        - namedotcom
+        - ns1
+        - otc
+        - ovh
+        - pdns
+        - rackspace
+        - rout53
+        - rfc2136
+        - vultr
+    - variable: "acme_challenge_dns_credentials"
+      description: "If you selected the challenge type DNS, put a 'key=value;key=value formatted list of credentials here (e.g. CLOUDFLARE_EMAIL=me@mine.tld;CLOUDFLARE_API_KEY=verysecret). Depending on your provider, see https://docs.traefik.io/configuration/acme/#provider"
+      label: "ACME challenge DNS credentials (DNS only):"
+      required: false
+      type: "string"
     - variable: "acme_email"
       description: "ACME user email."
       label: "ACME email:"
