@@ -105,7 +105,7 @@ catalog:
       required: true
       default: false
       type: "boolean"
-    - variable: "acme_challenge_type"
+    - variable: "acme_challenge"
       description: "Either http for http based challange or DNS for DNS-01 based challenge"
       label: "ACME challenge type:"
       required: false
@@ -161,14 +161,6 @@ catalog:
       required: true
       default: "test@traefik.io"
       type: "string"
-    - variable: "acme_challenge"
-      description: "ACME challenge."
-      label: "ACME challenge:"
-      required: true
-      default: http
-      type: enum
-      options: # List of options if using type of `enum`
-        - http
     - variable: "acme_onhostrule"
       description: "Enable acme onHostRule."
       label: "ACME onHostRule:"
