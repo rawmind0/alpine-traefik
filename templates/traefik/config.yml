@@ -1,0 +1,8 @@
+name: Traefik
+description: |
+          Traefik active load balancer
+version: v1.6.0-rancher1
+category: Load Balancing
+maintainer: "Raul Sanchez <rawmind@gmail.com>"
+license:
+        projectURL: https://github.com/rawmind0/alpine-traefik
