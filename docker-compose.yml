@@ -1,0 +1,13 @@
+# that is just a test-setup for development of the image and different tests - change it for your needs
+version: "2"
+
+services:
+  traefik:
+    image: acme_test
+    build:
+      context: ./
+    environment:
+      TRAEFIK_ACME_CHALLENGE_DNS_CREDENTIALS: 'CF_MAIL=aasdas@gmx.de;CF_API=adqweq121'
+      TRAEFIK_ACME_ENABLE: 'true'
+      TRAEFIK_HTTPS_ENABLE: 'true'
+      TRAEFIK_ACME_CHALLENGE: 'dns'
