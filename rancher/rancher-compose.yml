@@ -1,6 +1,6 @@
 .catalog:
   name: traefik
-  version: 1.6.2
+  version: 1.6.3
   description: |
     (Experimental) Traefik load balancer.
   minimum_rancher_version: v0.59.0
