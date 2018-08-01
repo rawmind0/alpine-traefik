@@ -14,7 +14,7 @@ docker build -t rawmind/alpine-traefik:<version> .
 ## Versions
 
 - `1.7.0-rc2-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.7.0-rc2-0/Dockerfile)
-- `1.6.5-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.6.5-1/Dockerfile)
+- `1.6.5-2` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.6.5-1/Dockerfile)
 - `1.6.4-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.6.4-0/Dockerfile)
 - `1.6.3-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.6.3-0/Dockerfile)
 - `1.6.2-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.6.2-0/Dockerfile)
@@ -118,10 +118,11 @@ Traefik is installed with the default configuration and some parameters can be o
 | `TRAEFIK_TIMEOUT_IDLE="180"`                                             | respondingTimeouts [idleTimeout](https://docs.traefik.io/configuration/commons/#responding-timeouts)                                                                                                                              |
 | `TRAEFIK_TIMEOUT_DIAL="30"`                                              | forwardingTimeouts [dialTimeout](https://docs.traefik.io/configuration/commons/#forwarding-timeouts)                                                                                                                              |
 | `TRAEFIK_TIMEOUT_HEADER="0"`                                             | forwardingTimeouts [responseHeaderTimeout](https://docs.traefik.io/configuration/commons/#forwarding-timeouts)                                                                                                                    |
+| `TRAEFIK_TIMEOUT_GRACE="10"`                                             | lifeCycle [graceTimeOut](https://docs.traefik.io/configuration/commons/#life-cycle)                                                                                 |
+| `TRAEFIK_TIMEOUT_ACCEPT="0"`                                             | lifeCycle [requestAcceptGraceTimeout](https://docs.traefik.io/configuration/commons/#life-cycle)                                                                                 |
 | `CATTLE_URL=""`                                                          | Rancher API url                                                                                                                                                                                                                   |
 | `CATTLE_ACCESS_KEY=""`                                                   | Rancher access key                                                                                                                                                                                                                |
 | `CATTLE_SECRET_KEY=""`                                                   | Rancher secret key                                                                                                                                                                                                                |
-
 
 ### Custom Configuration
 
