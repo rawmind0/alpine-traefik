@@ -1,10 +1,10 @@
-FROM rawmind/alpine-monit:5.25-0
+FROM rawmind/alpine-monit:5.25-3
 MAINTAINER Raul Sanchez <rawmind@gmail.com>
 
 # Set environment
 ENV SERVICE_NAME=traefik \
     SERVICE_HOME=/opt/traefik \
-    SERVICE_VERSION=1.7.0-rc5 \
+    SERVICE_VERSION=1.6.6 \
     SERVICE_USER=traefik \
     SERVICE_UID=10001 \
     SERVICE_GROUP=traefik \
