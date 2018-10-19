@@ -215,7 +215,7 @@ if [ "${TRAEFIK_ADMIN_ENABLE}" == "true" ]; then
     compress = ${TRAEFIK_HTTP_COMPRESSION}
 "
     if [ "${TRAEFIK_ADMIN_AUTH_USERS}" != "" ]; then
-        echo ${TRAEFIK_ADMIN_AUTH_USERS} > "${SERVICE_HOME}/.htpasswd"
+        echo "${TRAEFIK_ADMIN_AUTH_USERS}" > "${SERVICE_HOME}/.htpasswd"
         TRAEFIK_ENTRYPOINTS_ADMIN=${TRAEFIK_ENTRYPOINTS_ADMIN}"\
     [entryPoints.traefik.auth.${TRAEFIK_ADMIN_AUTH_METHOD}]
       usersFile = \"${SERVICE_HOME}/.htpasswd\"
