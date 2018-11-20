@@ -310,6 +310,17 @@ if [ "${TRAEFIK_HTTPS_ENABLE}" == "true" ] || [ "${TRAEFIK_HTTPS_ENABLE}" == "on
     provider = \"${TRAEFIK_ACME_CHALLENGE_DNS_PROVIDER}\"
     delayBeforeCheck = ${TRAEFIK_ACME_CHALLENGE_DNS_DELAY}
 "
+        if [ -n "${TRAEFIK_ACME_WILDCARD_DOMAINS}" ]; then
+            IFS=","
+            for domain in ${TRAEFIK_ACME_WILDCARD_DOMAINS}; do
+                TRAEFIK_ACME_CFG=${TRAEFIK_ACME_CFG}"\
+    [[acme.domains]]
+      main = \"*.$domain\"
+      sans = [\"$domain\"]
+"
+            done
+            unset $IFS
+        fi
     fi
 
 fi
