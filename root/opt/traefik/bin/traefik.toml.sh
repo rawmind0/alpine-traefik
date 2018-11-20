@@ -319,7 +319,6 @@ if [ "${TRAEFIK_HTTPS_ENABLE}" == "true" ] || [ "${TRAEFIK_HTTPS_ENABLE}" == "on
       sans = [\"$domain\"]
 "
             done
-            unset $IFS
         fi
     fi
 
