@@ -15,7 +15,7 @@ ENV SERVICE_RELEASE=${SERVICE_URL}/v${SERVICE_VERSION}/traefik_linux-amd64 \
 
 # Download and install traefik
 RUN mkdir -p ${SERVICE_HOME}/bin ${SERVICE_HOME}/etc ${SERVICE_HOME}/log ${SERVICE_HOME}/certs ${SERVICE_HOME}/acme && \
-    apk add --no-cache libcap  && \
+    apk add --no-cache libcap tzdata && \
     cd ${SERVICE_HOME}/bin && \
     curl -jksSL "${SERVICE_RELEASE}" -O && \
     mv traefik_linux-amd64 traefik && \
