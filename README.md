@@ -13,7 +13,7 @@ docker build -t rawmind/alpine-traefik:<version> .
 
 ## Versions
 
-- `1.7.4-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.7.4-0/Dockerfile)
+- `1.7.4-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.7.4-1/Dockerfile)
 - `1.7.3-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.7.3-1/Dockerfile)
 - `1.7.2-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.7.2-0/Dockerfile)
 - `1.7.0-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.7.0-0/Dockerfile)
@@ -100,7 +100,8 @@ Traefik is installed with the default configuration and some parameters can be o
 | `TRAEFIK_ACME_EMAIL="test@traefik.io"`                                   | Default email                                                                                                                                                                                                                     |
 | `TRAEFIK_ACME_ONHOSTRULE="true"`                                         | ACME OnHostRule parameter                                                                                                                                                                                                         |
 | `TRAEFIK_ACME_CASERVER="https://acme-v02.api.letsencrypt.org/directory"` | ACME caServer parameter                                                                                                                                                                                                           |
-| `TRAEFIK_FILE_ENABLE="false"`                                            | Enable/disable file backend                                                                                                                                                                                                       |
+| `TRAEFIK_ACME_KEYTYPE=RSA4096`                                           | Acme keytype to use. Available values : "EC256", "EC384", "RSA2048", "RSA4096", "RSA8192". [acme keytype](https://docs.traefik.io/configuration/acme/)                                                                                                                            |
+| `TRAEFIK_FILE_ENABLE="false"`                                            | Enable/disable file backend                                                                                                                        |
 | `TRAEFIK_FILE_NAME="${SERVICE_HOME}/etc/rules.toml"`                     | File name for file backend                                                                                                                                                                                                        |
 | `TRAEFIK_K8S_ENABLE="false"`                                             | Enable/disable traefik K8S integration                                                                                                                                                                                            |
 | `TRAEFIK_RANCHER_ENABLE="false"`                                         | Enable/disable traefik RANCHER integration                                                                                                                                                                                        |
