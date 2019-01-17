@@ -93,6 +93,18 @@
       required: true
       default: https://acme-v02.api.letsencrypt.org/directory
       type: "string"
+    - variable: "acme_keytype"
+      description: "ACME key type to use."
+      label: "ACME key type:"
+      required: true
+      default: RSA4096
+      type: "enum"
+      options:
+       - RSA8192
+       - RSA4096
+       - RSA2048
+       - EC384
+       - EC256
     - variable: "ssl_key"
       description: "SSL key to secure the service. *Required if you enable https"
       label: "SSL key"
