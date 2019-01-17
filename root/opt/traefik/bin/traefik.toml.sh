@@ -31,6 +31,7 @@ TRAEFIK_ACME_EMAIL=${TRAEFIK_ACME_EMAIL:-"test@traefik.io"}
 TRAEFIK_ACME_ONHOSTRULE=${TRAEFIK_ACME_ONHOSTRULE:-"true"}
 TRAEFIK_ACME_CASERVER=${TRAEFIK_ACME_CASERVER:-"https://acme-v02.api.letsencrypt.org/directory"}
 TRAEFIK_ACME_KEYTYPE=${TRAEFIK_ACME_KEYTYPE:-"RSA4096"}
+TRAEFIK_ACME_WILDCARD_DOMAINS=${TRAEFIK_ACME_WILDCARD_DOMAINS:-""}
 TRAEFIK_K8S_ENABLE=${TRAEFIK_K8S_ENABLE:-"false"}
 TRAEFIK_K8S_OPTS=${TRAEFIK_K8S_OPTS:-""}
 TRAEFIK_METRICS_ENABLE=${TRAEFIK_METRICS_ENABLE:-"false"}
@@ -311,6 +312,16 @@ if [ "${TRAEFIK_HTTPS_ENABLE}" == "true" ] || [ "${TRAEFIK_HTTPS_ENABLE}" == "on
     provider = \"${TRAEFIK_ACME_CHALLENGE_DNS_PROVIDER}\"
     delayBeforeCheck = ${TRAEFIK_ACME_CHALLENGE_DNS_DELAY}
 "
+        if [ -n "${TRAEFIK_ACME_WILDCARD_DOMAINS}" ]; then
+            IFS=","
+            for domain in ${TRAEFIK_ACME_WILDCARD_DOMAINS}; do
+                TRAEFIK_ACME_CFG=${TRAEFIK_ACME_CFG}"\
+    [[acme.domains]]
+      main = \"*.$domain\"
+      sans = [\"$domain\"]
+"
+            done
+        fi
     fi
 
 fi
