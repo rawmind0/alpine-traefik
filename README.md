@@ -13,6 +13,7 @@ docker build -t rawmind/alpine-traefik:<version> .
 
 ## Versions
 
+- `1.7.8-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.7.8-0/Dockerfile)
 - `1.7.7-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.7.7-0/Dockerfile)
 - `1.7.6-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.7.6-0/Dockerfile)
 - `1.7.4-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.7.4-1/Dockerfile)
