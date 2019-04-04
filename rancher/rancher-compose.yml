@@ -169,6 +169,25 @@
       default: "[0.1,0.3,1.2,5.0]"
       required: true
       type: "string"
+    - variable: "use_consul"
+      description: "Enable Consul KV storage as a configuration backend"
+      label: "Enable Consul"
+      default: "false"
+      required: true
+      type: "boolean"
+    - variable: "consul_endpoint"
+      description: "ip:port"
+      label: "Counsul endpoint address"
+      default: "127.0.0.1:8500"
+      required: true
+      type: "string"
+    - variable: "consul_prefix"
+      description: "prefix used for values"
+      label: "Consul prefix"
+      default: "traefik"
+      required: true
+      type: "string"
+
 traefik:
   retain_ip: true
   health_check:
