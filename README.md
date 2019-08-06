@@ -13,6 +13,7 @@ docker build -t rawmind/alpine-traefik:<version> .
 
 ## Versions
 
+- `1.7.12-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.7.12-1/Dockerfile)
 - `1.7.12-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.7.12-0/Dockerfile)
 - `1.7.11-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.7.11-0/Dockerfile)
 - `1.7.10-0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.7.10-0/Dockerfile)
@@ -119,6 +120,8 @@ Traefik is installed with the default configuration and some parameters can be o
 | `TRAEFIK_RANCHER_HEALTHCHECK="false"`                                    | Rancher EnableServiceHealthFilter                                                                                                                                                                                                 |
 | `TRAEFIK_RANCHER_INTERVALPOLL="false"`                                   | Rancher enable/disable intervalpoll                                                                                                                                                                                               |
 | `TRAEFIK_RANCHER_PREFIX="/2016-07-29"`                                   | Rancher metadata prefix                                                                                                                                                                                                           |
+| `TRAEFIK_DOCKER_ENABLE="false"`                                          | Enable/disable traefik DOCKER backend                                                                                                                                                                                        |
+| `TRAEFIK_DOCKER_ENTRYPOINT="unix:///var/run/docker.sock"`                | Set docker backend (unix socket or TCP). BEWARE: if you set a unix socket traefik has to be started as root!                                                                                                                                                                                        |
 | `TRAEFIK_USAGE_ENABLE="false"`                                           | Enable/disable send Traefik [anonymous usage collection](https://docs.traefik.io/basics/#collected-data)                                                                                                                          |
 | `TRAEFIK_METRICS_ENABLE="false"`                                         | Enable/disable traefik [metrics](https://docs.traefik.io/configuration/metrics/)                                                                                                                                                  |
 | `TRAEFIK_METRICS_EXPORTER=""`                                            | Metrics exporter <code>prometheus&vert;datadog&vert;statsd&vert;influxdb</code>                                                                                                                                                   |
