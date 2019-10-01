@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function log {
-        echo `date` $ME - $@
+    echo `date` $ME - $@ > /proc/1/fd/2
 }
 
 function serviceLog {
@@ -9,7 +9,7 @@ function serviceLog {
     if [ -e ${TRAEFIK_LOG_FILE} ]; then
         rm ${TRAEFIK_LOG_FILE}
     fi
-    ln -sf /proc/1/fd/1 ${TRAEFIK_LOG_FILE}
+    ln -sf /proc/1/fd/2 ${TRAEFIK_LOG_FILE}
 }
 
 function serviceAccess {
@@ -51,13 +51,13 @@ export TRAEFIK_ACCESS_FILE=${TRAEFIK_ACCESS_FILE:-"${SERVICE_HOME}/log/access.lo
 
 case "$1" in
         "start")
-            serviceStart &>> /proc/1/fd/1
+            serviceStart &>> /proc/1/fd/2
         ;;
         "stop")
-            serviceStop &>> /proc/1/fd/1
+            serviceStop &>> /proc/1/fd/2
         ;;
         "restart")
-            serviceRestart &>> /proc/1/fd/1
+            serviceRestart &>> /proc/1/fd/2
         ;;
         *) echo "Usage: $0 restart|start|stop"
         ;;
